@@ -1,0 +1,112 @@
+<div class="side-menu">
+	<div class="menu-body">
+		<ul class="nav nav-pills nav-stacked sidenav">
+			<li ng-class="{active: $state.includes('home')}">
+				<a ui-sref="home">
+				<span class="glyphicon glyphicon-home"></span>
+				</a>
+				<ul class="nested-dropdown animated fadeIn">
+					<li><a ng-class="{active: $state.includes('home')}" ui-sref="home">{{ 'dashboard' | translate }}</a></li>
+				</ul>
+			</li>
+			<li ng-class="{active: $state.includes('typography')}">
+				<a ui-sref="typography">
+				<span class="glyphicon glyphicon-text-size"></span>
+				</a>
+				<ul class="nested-dropdown animated fadeIn">
+					<li><a ng-class="{active: $state.includes('typography')}" ui-sref="typography">{{ 'typography' | translate }}</a></li>
+				</ul>
+			</li>
+			<li ng-class="{active: $state.includes('grid')}">
+				<a ui-sref="grid">
+				<span class="glyphicon glyphicon-th-large"></span>
+				</a>
+				<ul class="nested-dropdown animated fadeIn">
+					<li><a ui-sref="grid">{{ 'grid' | translate }}</a></li>
+				</ul>
+			</li>
+			<li ng-class="{active: $state.includes('table')}">
+				<a ui-sref="table">
+				<span class="glyphicon glyphicon-list"></span>
+				</a>
+				<ul class="nested-dropdown animated fadeIn">
+					<li><a ng-class="{active: $state.includes('table')}" ui-sref="table">{{ 'table' | translate }}</a></li>
+				</ul>
+			</li>
+			<li ng-class="{active: $state.includes('form')}">
+				<a ui-sref="elements">
+					<span class="glyphicon glyphicon-equalizer"></span>
+				</a>
+				<ul class="nested-dropdown animated fadeIn">
+					<li class="sidemenu-header">{{ 'form' | translate }}</li>
+					<li><a ng-class="{active: $state.includes('form')}" ui-sref="elements">{{ 'elements' | translate }}</a></li>
+					<li><a ng-class="{active: $state.includes('form')}" ui-sref="components">{{ 'components' | translate }}</a></li>
+				</ul>
+			</li>
+			<li ng-class="{active: $state.includes('ui-interface')}">
+				<a ui-sref="button">
+				<span class="glyphicon glyphicon-cloud-download"></span>
+				</a>
+				<ul class="nested-dropdown animated fadeIn">
+					<li class="sidemenu-header">{{ 'user_interface' | translate }}</li>
+					<li><a ui-sref="button">{{ 'buttons' | translate }}</a></li>
+					<li><a ui-sref="dropdown">{{ 'dropdown' | translate }}</a></li>
+					<li><a ui-sref="icons">{{ 'icons' | translate }}</a></li>
+					<li><a ui-sref="panels">{{ 'panels' | translate }}</a></li>
+					<li><a ui-sref="alerts">{{ 'alerts' | translate }}</a></li>
+					<li><a ui-sref="progressbars">{{ 'progressbars' | translate }}</a></li>
+					<li><a ui-sref="pagination">{{ 'pagination' | translate }}</a></li>
+					<li><a ui-sref="other-elements">{{ 'other_elements' | translate }}</a></li>
+				</ul>
+			</li>
+			<li ng-class="{active: $state.includes('charts')}">
+				<a ui-sref="chartjs">
+				<span class="glyphicon glyphicon-signal"></span>	
+				</a>
+				<ul class="nested-dropdown animated fadeIn">
+					<li class="sidemenu-header">{{ 'charts' | translate }}</li>	
+					<li><a ui-sref="chartjs">Chart.js</a></li>
+					<li><a ui-sref="c3chart">C3.js</a></li>
+				</ul>
+			</li>
+			<li ng-class="{active: $state.includes('calendar')}"> 
+				<a ui-sref="calendar">
+				<span class="glyphicon glyphicon-calendar"></span>
+				</a>
+				<ul class="nested-dropdown animated fadeIn">
+					<li><a ui-sref="calendar">{{ 'calendar' | translate }}</a></li>
+				</ul>
+			</li>
+			<li ng-class="{active: $state.includes('mail')}">
+				<a ui-sref="inbox">
+				<span class="glyphicon glyphicon-envelope"></span>
+				</a>
+				<ul class="nested-dropdown animated fadeIn">
+					<li class="sidemenu-header">{{ 'mail' | translate }}</li>
+					<li><a ui-sref="inbox">{{ 'inbox' | translate }}</a></li>
+					<li><a ui-sref="compose">{{ 'compose' | translate }}</a></li>
+				</ul>
+			</li>
+			<li ng-class="{active: $state.includes('invoice')}"> 
+				<a ui-sref="invoice">
+				<span class="glyphicon glyphicon-list-alt"></span>
+				</a>
+				<ul class="nested-dropdown animated fadeIn">
+					<li><a ui-sref="invoice">{{ 'invoice' | translate }}</a></li>
+				</ul>
+			</li>
+			<li ng-class="{active: $state.includes('pages')}">
+				<a ui-sref="blank">
+				<span class="glyphicon glyphicon-duplicate"></span>
+				</a>
+				<ul class="nested-dropdown animated fadeIn">
+					<li class="sidemenu-header">{{ 'pages' | translate }}</li>
+					<li><a ui-sref="blank">{{ 'blankpage' | translate }}</a></li>
+					<li><a ui-sref="login">{{ 'login' | translate }}</a></li>
+					<li><a ui-sref="signup">{{ 'signup' | translate }}</a></li>
+					<li><a ui-sref="404-page">{{ '404page' | translate }}</a></li>
+				</ul>
+			</li>
+		</ul>
+	</div>
+</div>

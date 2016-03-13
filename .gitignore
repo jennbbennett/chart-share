@@ -3,3 +3,5 @@
 gradlew
 server/gradle
 gradlew.bat
+server/src/main/resources/public
+**/gradle

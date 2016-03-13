@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en" class="no-js">
+<!--<![endif]-->
+<head>
+
+	<meta charset="utf-8"/>
+
+	<title>Ani Angular Theme
+	</title>
+
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta content="width=device-width, initial-scale=1" name="viewport"/>
+	<meta content="" name="description"/>
+	<meta content="" name="author"/>
+
+	<link rel="stylesheet" href="css/perfect-scrollbar.min.css" />
+	<link rel="stylesheet" href="css/animate.min.css" />
+	<link rel="stylesheet" href="css/vendor.css"/>
+	<link rel="stylesheet" href="css/main.css" />
+	<link rel="stylesheet" href="css/docs.css" />
+
+
+</head>
+<body class="page-header-fixed page-quick-sidebar-over-content">
+	<div class="navbar navbar-inverse navbar-fixed-top">
+		<a class="navbar-brand" href="http://ani.strapui.com" style="position:absolute;">&nbsp;Ani Theme</a>
+
+	</div>
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-4">
+				<ul class="nav nav-pills nav-stacked affix select-options">
+				  <li role="presentation"><a href="#installation">Installation</a></li>
+				  <li role="presentation"><a href="#features">Features</a></li>
+				  <li role="presentation"><a href="#widgets">Widgets</a></li>
+				  <li role="presentation"><a href="#add-widgets">Plugins</a></li>
+				</ul>
+			</div>
+			<div class="col-sm-8 col-sm-offset-5 docs-content">
+				<div id="installation">
+				<h3>Installation</h3>
+					<div class="subject-content">
+						To use the Ani Angular Theme, you need to make sure you have <code>bower</code>, <code>npm</code> and <code>gulp</code> globally installed. Now navigate to your app directory (<code>$ cd myAngularApp/</code>) and run the following terminal commands :
+						<ul>
+							<li>
+								<code>$ bower install</code>
+							</li>
+							<li>
+								<code>$ npm install</code>
+							</li>
+							<li>
+								<code>$ gulp serve</code>
+							</li>
+						</ul>
+						You have now succesfully set up Ani Angular Theme!
+					</div>
+				</div>
+				<div id="basics">
+					<h3>Features</h3>
+					<div class="subject-content">
+						<div class="subject-content">
+							Ani is a lightweight and feature rich admin template which is clean and easy to use.
+							Current release comes with the following features:
+							<ul class="features-list">
+								<li>
+									4 Different theme colors
+								</li>
+								<li>
+									Responsive design based on Bootstrap 3.3.2
+								</li>
+								<li>
+									Custom elements and plugins including:
+									<ul class="features-list-extended">
+										<li>
+											Pure CSS3 checkbox, radio and On/Off switch elements
+										</li>
+										<li>
+											 Wysiwig editor
+										</li>
+										<li>
+											User Profile
+										</li>
+										<li>
+											Email-template
+										</li>
+										<li>
+											Customizable widgets in different colors and styles
+										</li>
+									</ul>
+								</li>
+								<li>
+									Boostrap, Angular Bootstrap UI and third party plugins and elements including:
+									<ul class="features-list-extended">
+										<li>
+											Dynamic Charts
+										</li>
+										<li>
+											Tables
+										</li>
+										<li>
+											Form validation
+										</li>
+										<li>
+											Date Picker
+										</li>
+										<li>
+											DateRange Picker
+										</li>
+										<li>
+											Time Picker
+										</li>
+										<li>
+											Carousel for Gallery
+										</li>
+										<li>
+											Full Calendar
+										</li>
+										<li>
+											Progress Bars
+										</li>
+										<li>
+											Labels and Badges
+										</li>
+										<li>
+											Collapse
+										</li>
+										<li>
+											To-do List
+										</li>
+									</ul>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div id="widgets">
+					<h3>Widgets</h3>
+					<div class="subject-content">
+						The following widgets have been used in Ani Angular Theme :
+						<div class="widget-docs">
+							<div class="well">
+								<h4>Panels</h4>
+								<div class="widgets-docs-elements">
+									<div class="panel panel-primary">
+		  								<div class="panel-heading">
+											<h3 class="panel-title">Primary Panel
+											</h3>
+										</div>
+										<div class="panel-body">
+											Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+											tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+											quis nostrud exercitation.
+										</div>
+									</div>
+								</div>
+								<div class="widget-docs-code">
+									<pre>&lt;div class="panel panel-primary"&gt;
+	&lt;div class="panel-heading"&gt;
+	&lt;h3 class="panel-title"&gt;Primary Panel
+	&lt;/h3&gt;
+	&lt;/div&gt;
+	&lt;div class="panel-body"&gt;
+	Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+	tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+	quis nostrud exercitation.
+	&lt;/div&gt;
+&lt;/div&gt;</pre>
+								</div>
+							</div>
+							<div class="well">
+								<h4>Buttons</h4>
+								<div class="widget-docs-elements">
+									<button type="button" class="btn btn-success btn-rounded">Success Button</button>
+								</div>
+								<div class="widget-docs-code">
+								<pre>&lt;button type="button" class="btn btn-success btn-rounded"&gt;Success Button&lt;/button&gt;</pre>
+								</div>
+							</div>
+							<div class="well">
+								<h4>Dropdowns</h4>
+								<div class="widget-docs-elements">
+									<div class="btn-group">
+										<button type="button" class="btn btn-danger btn-bordered">Action</button>
+										<button type="button" class="btn btn-danger dropdown-toggle haha btn-bordered" data-toggle="dropdown" aria-expanded="false">
+										<span class="caret"></span>
+										<span class="sr-only">Toggle Dropdown</span>
+										</button>
+										<ul class="dropdown-menu" role="menu">
+										<li><a href="#">Action</a></li>
+										<li><a href="#">Another action</a></li>
+										<li><a href="#">Something else here</a></li>
+										<li class="divider"></li>
+										<li><a href="#">Separated link</a></li>
+										</ul>
+									</div>
+								</div>
+								<div class="widget-docs-code">
+									HTML<pre>&lt;div ng-controller="DropdownCtrl" class="btn-group" dropdown is-open="status.isopen"&gt;
+    &lt;button type="button" class="btn btn-danger  btn-bordered dropdown-toggle right-split" dropdown-toggle ng-disabled="disabled"&gt;
+        Button dropdown &lt;span class="caret"&gt;&lt;/span&gt;
+    &lt;/button&gt;
+    &lt;ul class="dropdown-menu" role="menu"&gt;
+        &lt;li&gt;&lt;a href="#"&gt;Action&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#"&gt;Another action&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#"&gt;Something else here&lt;/a&gt;&lt;/li&gt;
+        &lt;li class="divider"&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#"&gt;Separated link&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/div&gt;</pre>
+JavaScript<pre>
+ angular.module('chart-share').controller('DropdownCtrl', function ($scope, $log) {
+ $scope.status = {
+        isopen: false
+    };
+
+    $scope.toggled = function(open) {
+        $log.log('Dropdown is now: ', open);
+    };
+
+    $scope.toggleDropdown = function($event) {
+        $event.preventDefault();
+        $event.stopPropagation();
+        $scope.status.isopen = !$scope.status.isopen;
+    };
+});
+</pre>
+								</div>
+							<div class="well">
+								<h4>Labels</h4>
+								<div class="widget-docs-elements">
+									<span class="label label-info">Label</span>
+								</div>
+								<div class="widget-docs-code">
+									<pre>&lt;span class="label label-info"&gt;Label&lt;/span&gt;</pre>
+								</div>
+							</div>
+							<div class="well">
+								<h4>Progress Bars</h4>
+								<div class="widgets-docs-elements">
+									<div class="progress">
+									  <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 65%">
+									    <span class="sr-only"></span>
+									  </div>
+									</div>
+								</div>
+								<div class="widget-docs-code">
+									<pre>&lt;progressbar value="65" class="progress-striped active" type="primary"&gt;&lt;/progressbar&gt;</pre>
+								</div>
+							</div>
+							<div class="well">
+								<h4>Alerts</h4>
+								<div class="widgets-docs-elements">
+									<div class="alert alert-warning  alert-dismissable " role="alert">
+									 <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  My alert message.
+									</div>
+								</div>
+								<div class="widget-docs-code">
+									<pre>&lt;div class="alert alert-warning  alert-dismissable " role="alert"&gt;
+   &lt;button type="button" class="close" data-dismiss="alert" aria-label="Close"&gt;
+   &lt;span aria-hidden="true"&gt;
+   &lt;/span&gt;
+   &lt;/button&gt;
+   My alert message.
+&lt;/div&gt;</pre>
+								</div>
+							</div>
+							<div class="well">
+								<h4>Tooltip & Popover</h4>
+								<div class="widgets-docs-elements">
+								<button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="left" title="" data-original-title="Tooltip on left">Left Tooltip</button>
+								</div>
+								<div class="widget-docs-code">
+									<pre>
+&lt;a href="#" tooltip-placement="left" tooltip="Tooltip on left"&gt;&lt;button type="button" class="btn btn-default"&gt;Left Tooltip&lt;/button&gt;&lt;/a&gt;
+</pre>
+								</div>
+								<div class="widgets-docs-elements">
+								<button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="left" data-content="To the left!" data-original-title="" title="">
+								 Left Popover
+								</button>
+								</div>
+								<div class="widget-docs-code">
+									<pre>&lt;button popover-placement="left" popover="To the left!" class="btn btn-default"&gt;LeftPopover&lt;/button&gt;
+</pre>
+								</div>
+								<code>For popovers and tooltips in different replace "Left" with "Top/Right/Bottom"</code>
+							</div>
+							<div class="well">
+								<h4>Pagination</h4>
+								<div class="widgets-docs-elements">
+									<div class="clearfix">
+										<ul class="pagination no-m-t">
+											<li>
+										    	<a href="#" aria-label="Previous">
+										        	<span aria-hidden="true">«</span>
+										      	</a>
+										    </li>
+										    <li><a href="#">1</a></li>
+											<li><a href="#">2</a></li>
+											<li><a href="#">3</a></li>
+											<li><a href="#">4</a></li>
+											<li><a href="#">5</a></li>
+											<li>
+										      <a href="#" aria-label="Next">
+										        <span aria-hidden="true">»</span>
+										      </a>
+										    </li>
+										</ul>
+									</div>
+								</div>
+								<div class="widget-docs-code">
+									HTML<pre>&lt;div class="clearfix" ng-controller="PaginationDemoCtrl"&gt;
+  &lt;pagination boundary-links="true" total-items="totalItems" ng-model="currentPage" class="pagination-sm" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"&gt;
+  &lt;/pagination&gt;
+&lt;/div&gt;
+&lt;div class="line-h-ex"&gt;&lt;/div&gt;
+&lt;div class="clearfix text-center" ng-controller="PaginationDemoCtrl"&gt;
+  &lt;pagination boundary-links="true" total-items="totalItems" ng-model="currentPage" class="pagination-sm" previous-text="&lsaquo;" next-  text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"&gt;
+  &lt;/pagination&gt;
+&lt;/div&gt;
+&lt;div class="line-h-ex"&gt;&lt;/div&gt;
+&lt;div class="clearfix pull-right no-m-b" ng-controller="PaginationDemoCtrl"&gt;
+  &lt;pagination boundary-links="true" total-items="totalItems" ng-model="currentPage" class="pagination-sm" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"&gt;
+  &lt;/pagination&gt;
+&lt;/div&gt;</pre>
+JavaScript<pre>
+angular.module('chart-share').controller('PaginationDemoCtrl', function ($scope, $log) {
+  $scope.totalItems = 64;
+  $scope.currentPage = 4;
+
+  $scope.setPage = function (pageNo) {
+    $scope.currentPage = pageNo;
+  };
+
+  $scope.pageChanged = function() {
+    $log.log('Page changed to: ' + $scope.currentPage);
+  };
+
+  $scope.maxSize = 5;
+  $scope.bigTotalItems = 175;
+  $scope.bigCurrentPage = 1;
+});
+</pre>
+								</div>
+							</div>
+							<div class="well">
+								<h4>Collapse</h4>
+								<div class="widgets-docs-elements">
+									<div class="panel-group" id="accordion">
+										<div class="panel panel-primary">
+											<div class="panel-heading">
+												<h4 class="panel-title">
+													<a data-toggle="collapse" data-parent="#accordion" href="#collapse4">
+														Click here for Collapse
+													</a>
+												</h4>
+											</div>
+											<div id="collapse4" class="panel-collapse collapse ">
+												<div class="panel-body">
+													Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo.
+												</div>
+											</div>
+										</div>					<div class="panel panel-primary">
+											<div class="panel-heading">
+												<h4 class="panel-title">
+													<a data-toggle="collapse" data-parent="#accordion" href="#collapse5">
+														Click here for Collapse
+													</a>
+												</h4>
+											</div>
+											<div id="collapse5" class="panel-collapse collapse ">
+												<div class="panel-body">
+													Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo.
+												</div>
+											</div>
+										</div>					<div class="panel panel-primary">
+											<div class="panel-heading">
+												<h4 class="panel-title">
+													<a data-toggle="collapse" data-parent="#accordion" href="#collapse6">
+														Click here for Collapse
+													</a>
+												</h4>
+											</div>
+											<div id="collapse6" class="panel-collapse collapse ">
+												<div class="panel-body">
+													Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo.
+												</div>
+											</div>
+										</div>				</div>
+								</div>
+								<div class="widget-docs-code">
+									<pre>&lt;accordion&gt;
+    &lt;accordion-group heading="Click here for Collapse"&gt;
+        Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo.
+    &lt;/accordion-group&gt;
+    &lt;accordion-group heading="Click here for Collapse"&gt;
+        Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo.
+    &lt;/accordion-group&gt;
+    &lt;accordion-group heading="Click here for Collapse"&gt;
+        Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo.
+    &lt;/accordion-group&gt;
+&lt;/accordion&gt; </pre>
+			</div>
+							</div>
+							<div class="well">
+							<h4>Tabs</h4>
+								<div class="widgets-docs-elements">
+									<div role="tabpanel">
+										<ul class="nav nav-tabs tabs" role="tablist">
+											<li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">&nbsp;Home</a></li>
+											<li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">&nbsp;Dynamic Title 1</a></li>
+											<li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">&nbsp;Dynamic Title 2</a></li>
+											<li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">&nbsp;Settings</a></li>
+										</ul>
+										<div class="tab-content panel-body">
+											<div role="tabpanel" class="tab-pane active" id="home">loremLorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis laborum commodi, placeat voluptates quisquam accusantium corporis ipsa, distinctio.
+											</div>
+											<div role="tabpanel" class="tab-pane" id="profile">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa et, suscipit non nihil .
+											</div>
+											<div role="tabpanel" class="tab-pane" id="messages">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iure dignissimos earum aut consectetur amet consequuntur libero sint consequatur tempora perferendis hic.
+											</div>
+											<div role="tabpanel" class="tab-pane" id="settings">Random settings
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="widget-docs-code">
+									HTML<pre>&lt;div ng-controller="TabsDemoCtrl"&gt;
+    &lt;tabset&gt;
+        &lt;tab&gt;
+            &lt;tab-heading&gt;&lt;i class="fa fa-home"&gt;&lt;/i&gt; Home&lt;/tab-heading&gt;
+            &lt;div class="t-p"&gt;
+                loremLorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis laborum commodi, placeat voluptates quisquam accusantium corporis ipsa, distinctio, consequuntur explicabo aliquid illo doloremque. Ut, nam, cum saepe repellat cumque eaque... Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto assumenda dolore unde, eos. Fugit aut officiis, et modi debitis, eum, qui praesentium ducimus dolores perferendis aliquam temporibus! Velit, tenetur, corporis?
+            &lt;/div&gt;
+        &lt;/tab&gt;
+        &lt;tab ng-repeat="tab in tabs" heading="{{tab.title}}" active="tab.active" disabled="tab.disabled"&gt;
+            &lt;div class="t-p"&gt;{{tab.content}}&lt;/div&gt;
+        &lt;/tab&gt;
+        &lt;tab-heading&gt;Settings &lt;/tab-heading&gt;
+        &lt;div class="t-p"&gt;
+                I've got an HTML heading, and a select callback.
+                Pretty cool!
+            &lt;/div&gt;
+        &lt;/tab&gt;
+    &lt;/tabset&gt;
+&lt;/div&gt;</pre>
+JavaScript<pre>
+angular.module('chart-share').controller('TabsDemoCtrl', function ($scope, $window) {
+  $scope.tabs = [
+    { title:'Dynamic Title 1', content:'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa et, suscipit non nihil .' },
+    { title:'Dynamic Title 2', content:'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iure dignissimos earum aut consectetur amet consequuntur libero sint consequatur tempora perferendis hic.' }
+    { title:'Settings', content:'Random Settings' }
+  ];
+});
+</pre>
+								</div>
+							</div>
+							<div class="well">
+							<h4>Icons</h4>
+								<div class="widgets-docs-elements">
+									<i class="fa fa-glass"></i> &nbsp;&nbsp; <i class="fa fa-bar-chart-o"></i>
+								</div>
+								<div class="widget-docs-code">
+									<pre>&lt;i class="fa fa-glass">&lt;/i&gt;
+&lt;i class="fa fa-bar-chart-o"&gt;&lt;/i&gt;</pre>
+								</div>
+							</div>
+							<div class="well">
+								<div class="widgets-docs-elements">
+									<table class="table table-bordered">
+										<thead>
+											<tr>
+												<th>Name</th>
+												<th>Email</th>
+												<th>Address</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>John</td>
+												<td>john@gmail.com</td>
+												<td>London, UK</td>
+											</tr>
+											<tr>
+												<td>Andy</td>
+												<td>andygmail.com</td>
+												<td>Merseyside, UK</td>
+											</tr>
+											<tr>
+												<td>Frank</td>
+												<td>frank@gmail.com</td>
+												<td>Southampton, UK</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+								<div class="widget-docs-code">
+									<pre>&lt;table class="table table-bordered"&gt;
+	&lt;thead&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Name&lt;/th&gt;
+			&lt;th&gt;Email&lt;/th&gt;
+			&lt;th&gt;Address&lt;/th&gt;
+		&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+		&lt;tr&gt;
+			&lt;td&gt;John&lt;/td&gt;
+			&lt;td&gt;john@gmail.com&lt;/td&gt;
+			&lt;td&gt;London, UK&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;Andy&lt;/td&gt;
+			&lt;td&gt;andygmail.com&lt;/td&gt;
+			&lt;td&gt;Merseyside, UK&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;Frank&lt;/td&gt;
+			&lt;td&gt;frank@gmail.com&lt;/td&gt;
+			&lt;td&gt;Southampton, UK&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;</pre>
+								</div>
+								<code>The table classes can be changed using table-bordered/table-hover/table-condensed classes. </code>
+							</div>
+							<div class="well">
+							<h4>Switch</h4>
+								<div class="widgets-docs-elements">
+									<div class="onoffswitch">
+									  <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="switch3" checked="">
+									  <label class="onoffswitch-label" for="switch3">
+									    <span class="onoffswitch-inner"></span>
+									    <span class="onoffswitch-switch"></span>
+									  </label>
+									</div>
+								</div>
+								<div class="widget-docs-code">
+									<pre>&lt;div class="widgets-docs-elements"&gt;
+	&lt;div class="onoffswitch"&gt;
+	  &lt;input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="switch3" checked=""&gt;
+	  &lt;label class="onoffswitch-label" for="switch3"&gt;
+	    &lt;span class="onoffswitch-inner"&gt;&lt;/span&gt;
+	    &lt;span class="onoffswitch-switch"&gt;&lt;/span&gt;
+	  &lt;/label&gt;
+	&lt;/div&gt;
+&lt;/div&gt;</pre>
+								</div>
+							</div>
+							<div class="well">
+								<h4>Form Elements</h4>
+								<div class="widgets-docs-elements">
+									<form>
+										<div class="form-group">
+											<label for="exampleInputEmail1">Email address</label>
+											<input type="email" class="form-control underline" id="exampleInputEmail1" placeholder="Enter email">
+										</div>
+										<div class="form-group">
+											<label for="exampleInputPassword1">Password</label>
+											<input type="password" class="form-control underline" id="exampleInputPassword1" placeholder="Password">
+										</div>
+										<div class="checkbox">
+													<label>
+														<input type="checkbox"> Remember me
+													</label>
+												</div>
+										<button type="submit" class="btn btn-default">Submit</button>
+									</form>
+								</div>
+								<div class="widget-docs-code">
+<pre>&lt;form&gt;
+&lt;div class="form-group"&gt;
+&lt;label for="exampleInputEmail1"&gt;Email address&lt;/label&gt;
+&lt;input type="email" class="form-control underline" id="exampleInputEmail1" placeholder="Enter email"&gt;
+&lt;/div&gt;
+&lt;div class="form-group"&gt;
+&lt;label for="exampleInputPassword1"&gt;Password&lt;/label&gt;
+&lt;input type="password" class="form-control underline" id="exampleInputPassword1" placeholder="Password"&gt;
+&lt;/div&gt;
+&lt;div class="checkbox"&gt;
+&lt;label&gt;
+&lt;input type="checkbox"&gt; Remember me
+&lt;/label&gt;
+&lt;/div&gt;
+&lt;button type="submit" class="btn btn-default"&gt;Submit&lt;/button&gt;
+&lt;/form&gt;</pre>
+								</div>
+							</div>
+							<div class="well">
+								<div ng-app="docs">
+									<div ng-controller="todoCtrl">
+										<h4>To Do List</h4>
+										<div class="widgets-docs-elements">
+											<todolist></todolist>
+										</div>
+										<div class="widget-docs-code">
+											<pre>&lt;todolist&gt;&lt;/todolist&gt;</pre>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div id="add-widgets">
+					<h3>Plugins</h3>
+					<div class="subject-content">
+						<div class="well">
+						<h4>Calendar</h4>
+							<div class="widgets-docs-elements">
+								<div id="calendar2"></div>
+							</div>
+							<div class="widget-docs-code">
+							<pre>&lt;div ui-calendar ng-model="eventSources"&gt;&lt;/div&gt;</pre>
+							</div>
+						</div>
+						<div class="well">
+							<h4>Chart.js Charts</h4>
+							<div class="widgets-docs-elements">
+								<div><canvas class ="round" id="cpie"></canvas></div>
+							</div>
+							<div class="widget-docs-code">
+								HTML<pre>&lt;div ng-controller="chartCtrl.js"&gt;
+	&lt;canvas id="pie" class="chart chart-pie chart-xs" data="pie.data" labels="pie.labels" colours="pie.colours"&gt;
+	&lt;/canvas&gt;
+&lt;/div&gt;</pre>
+JavaScript<pre>
+angular.module('chart-share').controller('ChartCtrl', ['$scope', function ($scope) {
+	$scope.pie = {
+	labels : ["Success", "Danger", "Info"],
+	data : [220, 70, 100],
+	colours: ['#5CB85C','#D9534F','#3CA2E0']
+	};
+}]);
+</pre>
+							</div>
+						</div>
+						<div class="well">
+							<h4>C3 Charts</h4>
+							<div class="widgets-docs-elements">
+								<div id="piechart"></div>
+							</div>
+							<div class="widget-docs-code">
+			<pre>&lt;c3chart bindto-id="pie-chart"&gt;
+    &lt;chart-column column-id="data-1" column-values="10" column-type="pie"/&gt;
+    &lt;chart-column column-id="data-2" column-values="30" column-type="pie"/&gt;
+    &lt;chart-column column-id="data-3" column-values="5" column-type="pie"/&gt;
+    &lt;chart-column column-id="data-4" column-values="19" column-type="pie"/&gt;
+    &lt;chart-column column-id="data-5" column-values="2" column-type="pie"/&gt;
+    &lt;chart-legend show-legend="false"/&gt;
+    &lt;chart-colors color-pattern="#3CA2E0,#5CB85C,#D9534F,#F0AD4E/&gt;
+    &lt;chart-size chart-height="300" chart-width="400"/&gt;
+&lt;/c3chart&gt;</pre>
+							</div>
+						</div>
+						<div class="well">
+							<h4>Growl Alerts</h4>
+							<div class="widgets-docs-elements">
+								<button type="button" class="btn btn-warning warning-growl">Warning Growl</button>
+							</div>
+							<div class="widget-docs-code">
+								<pre>&lt;growl-notifications&gt;
+  &lt;growl-notification ng-if="showGrowlWarning" class="growl-warning fading"&gt;Warning Notification&lt;/growl-notification&gt;
+&lt;/growl-notifications&gt;</pre>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script src="js/perfect-scrollbar.jquery.js"></script>
+	<script src="js/angular.min.js") type="text/javascript"></script>
+	<script src="js/app.js") type="text/javascript"></script>
+	<script src="js/vendor.js") type="text/javascript"></script>
+	<script src="js/docs.js") type="text/javascript"></script>
+
+</body>
+</html>
