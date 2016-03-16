@@ -5,3 +5,5 @@ server/gradle
 gradlew.bat
 server/src/main/resources/public
 **/gradle
+*.bak
+.DS_Store

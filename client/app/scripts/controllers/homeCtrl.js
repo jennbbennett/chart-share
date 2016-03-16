@@ -7,6 +7,8 @@
  * # HomeCtrl
  * Controller of AniTheme
  */
-angular.module('chart-share').controller('HomeCtrl', ['$scope', '$timeout', function ($scope, $timeout) {
-
+angular.module('chart-share').controller('HomeCtrl', ['$scope', '$timeout','authService',function ($scope, $timeout, authService) {
+  if (authService.isAuthenticated()) {
+    console.log('You are logged in!');
+  }
 }]);

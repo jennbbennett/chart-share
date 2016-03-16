@@ -4,6 +4,7 @@
 var gulp = require('gulp');
 var karma = require('karma').server;
 var argv = require('yargs').argv;
+var notify = require('gulp-notify');
 var $ = require('gulp-load-plugins')();
 
 
@@ -34,6 +35,31 @@ gulp.task('jscs', function () {
   return gulp.src('app/scripts/**/*.js')
     .pipe($.jscs());
 });
+
+gulp.task('quick', function () {
+  //var lazypipe = require('lazypipe');
+  //var cssChannel = lazypipe()
+  //  .pipe($.csso)
+  //  .pipe($.replace, 'bower_components/bootstrap/fonts', 'fonts');
+
+  var assets = $.useref.assets({searchPath: '{.tmp,app}'});
+
+  return gulp.src('app/**/*.html')
+    .pipe(assets)
+    .pipe($.if('*.js', $.ngAnnotate()))
+    //.pipe($.if('*.js', $.uglify()))
+    //.pipe($.if('*.css', cssChannel()))
+    .pipe(assets.restore())
+    .pipe($.useref())
+    .pipe($.if('*.html', $.minifyHtml({conditionals: true, loose: true})))
+    .pipe(gulp.dest('../server/src/main/resources/public'))
+    .pipe(notify({
+      message :"Finished building...",
+      onLast: true
+    }));
+  //.pipe(gulp.dest('dist'));
+});
+
 
 gulp.task('html', ['styles'], function () {
   var lazypipe = require('lazypipe');
@@ -126,6 +152,16 @@ gulp.task('wiredep', function () {
   gulp.src('test/*.js')
     .pipe(wiredep({exclude: exclude, devDependencies: true}))
     .pipe(gulp.dest('test'));
+});
+
+gulp.task('qwatch',['quick'], function () {
+  //$.livereload.listen();
+
+// watch for changes
+  gulp.watch([
+    'app/**/*.html',
+    'app/scripts/**/*.js'
+  ],['quick']);
 });
 
 gulp.task('watch', function () {

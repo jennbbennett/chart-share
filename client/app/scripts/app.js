@@ -2,9 +2,9 @@
 
 /**
  * @ngdoc overview
- * @name AniTheme
+ * @name ChartShare
  * @description
- * # AniTheme
+ * # ChartShare
  *
  * Main module of the application.
  */
@@ -23,9 +23,9 @@ angular
     'angular-loading-bar',
     'angular-progress-button-styles',
     'pascalprecht.translate',
-    'ui.bootstrap',
-    'authService'
+    'ui.bootstrap'
   ])
+
   .config(['cfpLoadingBarProvider', function (cfpLoadingBarProvider) {
     cfpLoadingBarProvider.latencyThreshold = 5;
     cfpLoadingBarProvider.includeSpinner = false;
@@ -44,11 +44,7 @@ angular
     $translateProvider.preferredLanguage('en');
 
   })
-  .config(function ($stateProvider, $urlRouterProvider, authService) {
-    if (authService.isAuthenticated()) {
-      console.log('You are logged in');
-    }
-
+  .config(function ($stateProvider, $urlRouterProvider) {
 
 
     $urlRouterProvider.when('/dashboard', '/dashboard/home');
@@ -59,35 +55,41 @@ angular
         abstract: true,
         url: '',
         templateUrl: 'views/base.html?v=' + window.app_version,
-        controller: 'DashboardCtrl'
+        controller: 'DashboardCtrl',
+        authenticate: true
       })
       .state('login', {
         url: '/login',
         parent: 'base',
         templateUrl: 'views/pages/login.html?v=' + window.app_version,
-        controller: 'LoginCtrl'
+        controller: 'LoginCtrl',
+        authenticate: false
       })
       .state('signup', {
         url: '/signup',
         parent: 'base',
         templateUrl: 'views/pages/signup.html?v=' + window.app_version,
-        controller: 'LoginCtrl'
+        controller: 'LoginCtrl',
+        authenticate: false
       })
       .state('404-page', {
         url: '/404-page',
         parent: 'base',
-        templateUrl: 'views/pages/404-page.html?v=' + window.app_version
+        templateUrl: 'views/pages/404-page.html?v=' + window.app_version,
+        authenticate: false
       })
       .state('dashboard', {
         url: '/dashboard',
         parent: 'base',
-        templateUrl: 'views/layouts/dashboard.html?v=' + window.app_version
+        templateUrl: 'views/layouts/dashboard.html?v=' + window.app_version,
+        authenticate: false
       })
       .state('home', {
         url: '/home',
         parent: 'dashboard',
         templateUrl: 'views/pages/dashboard/home.html?v=' + window.app_version,
-        controller: 'HomeCtrl'
+        controller: 'HomeCtrl',
+        authenticate: true
       })
       .state('typography', {
         url: '/typography',
@@ -199,5 +201,16 @@ angular
         parent: 'dashboard',
         templateUrl: 'views/pages/dashboard/mail/compose.html?v=' + window.app_version
       });
-
+  }).run(['$rootScope', '$state', 'authService', function ($rootScope, $state, authService) {
+  $rootScope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams){
+    console.log("you are in run");
+    //debugger;
+    if (toState.authenticate && !authService.isAuthenticated()){
+      // User isn’t authenticated
+      $state.transitionTo("login");
+      event.preventDefault();
+    } else if(authService.isAuthenticated()) {
+      console.log("Authenticated  - going to Dashboard", $rootScope.user);
+    }
   });
+}]);

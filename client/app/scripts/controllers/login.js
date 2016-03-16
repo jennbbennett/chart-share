@@ -8,11 +8,20 @@
  * Controller of AniTheme
  */
 angular.module('chart-share')
-  .controller('LoginCtrl', function($scope, $location, $timeout, $q) {
-
+  .controller('LoginCtrl', ['$scope', '$location','$timeout', '$q', '$state', 'authService', function($scope, $location, $timeout, $q, $state, authService) {
+    $scope.checkOnLoad = function(){
+      //debugger
+      console.log("Checking OnLoad");
+      if(authService.isAuthenticated()){
+          $location.path('/dashboard/home');
+        $state.transitionTo('dashboard');
+        }
+    }
     $scope.submit = function() {
-
-      	return false;
+      if(authService.isAuthenticated()) {
+        $location.path('/dashboard/home');
+      }
+      	//return false;
 
     }
 
@@ -25,6 +34,7 @@ angular.module('chart-share')
     		defer.resolve();
 
     		$timeout(function(){
+          //debugger;
     		   	$location.path('/dashboard/home');
     		}, 600);
 
@@ -33,5 +43,5 @@ angular.module('chart-share')
     	return defer.promise;
 
     }
-
-  });
+    $scope.checkOnLoad();
+  }]);

@@ -7,7 +7,7 @@
 	        <span class="icon-bar"></span>
 	        <span class="icon-bar"></span>
 	    </button>
-		<a class="navbar-brand" ui-sref="home">Hi <span ng-bind="home.user"></span></a>
+		<a class="navbar-brand" ui-sref="home">Hi {{user}}<span ng-bind="user"></span></a>
 	</div>
 	<div class="collapse navbar-collapse">
 		<form class="navbar-form navbar-left" role="search">
@@ -169,7 +169,7 @@
 				<a href class="dropdown-toggle" dropdown-toggle><img src="images/flat-avatar.png" class="topnav-img" alt=""> <span class="hidden-sm">Ani Pascal</span></a>
 				<ul class="dropdown-menu pull-right animated fadeIn">
 					<li><a ui-sref="profile">{{ 'profilee' | translate }}</a></li>
-					<li><a ui-sref="login">{{ 'logout' | translate }}</a></li>
+					<li><a ui-sref="login" ng-click="logOutUser()">{{ 'logout' | translate }}</a></li>
 				</ul>
 			</li>
 		</ul>
@@ -181,7 +181,7 @@
 			<a href class="dropdown-toggle animated fadeIn" dropdown-toggle><img src="images/flat-avatar.png" class="topnav-img" alt=""></a>
 			<ul class="dropdown-menu pull-right">
 				<li><a ui-sref="profile">{{ 'profilee' | translate }}</a></li>
-				<li><a ui-sref="login">{{ 'logout' | translate }}</a></li>
+				<li><a ui-sref="login" ng-click="logOutUser()">{{ 'logout' | translate }}</a></li>
 			</ul>
 		</li>
 	</ul>
