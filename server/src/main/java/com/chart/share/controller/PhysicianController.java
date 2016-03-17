@@ -16,7 +16,7 @@ public class PhysicianController {
 
     @Autowired
     private PhysicianRepository physicianRepository;
-    
+
     @Autowired
     private SequenceGenerator sequenceGenerator;
 
