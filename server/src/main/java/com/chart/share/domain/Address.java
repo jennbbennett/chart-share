@@ -1,32 +1,25 @@
 package com.chart.share.domain;
 
-import org.springframework.data.annotation.Id;
-
 /**
  * Created by jenn on 3/15/16.
  */
 public class Address {
-    @Id
-    private long id;
     private String street1;
     private String street2;
     private String city;
     private String state;
-    private long zipCode;
-
-    public long getPhysicianId() {
-        return PhysicianId;
-    }
-
-    private long PhysicianId;
+    private String zipCode;
 
     public Address(){
 
     }
 
-
-    public void setId(long id) {
-        this.id = id;
+    public Address(String street1, String street2, String city, String state, String zipCode) {
+        this.street1 = street1;
+        this.street2 = street2;
+        this.city = city;
+        this.state = state;
+        this.zipCode = zipCode;
     }
 
     public String getStreet1() {
@@ -45,7 +38,7 @@ public class Address {
         return state;
     }
 
-    public long getZipCode() {
+    public String getZipCode() {
         return zipCode;
     }
 }

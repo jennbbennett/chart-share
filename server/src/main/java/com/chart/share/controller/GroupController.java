@@ -9,7 +9,6 @@ import com.chart.share.repository.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.math.BigInteger;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -35,12 +34,12 @@ public class GroupController {
 
     @RequestMapping(value = "/findgroup")
     public FindGroupResult findGroup(@RequestParam("personId") long personId) {
-        long groupId = groupMemberRepository.findByMemberId(personId).getGroupId();
+        long groupId = groupMemberRepository.findByPersonId(personId).getGroupId();
         Group group = groupRepository.findOne(groupId);
         List<GroupMember> groupMembers = groupMemberRepository.findByGroupId(groupId);
         List<Person> members = new LinkedList<>();
         for (GroupMember member : groupMembers) {
-            members.add(personRepository.findOne(member.getMemberId()));
+            members.add(personRepository.findOne(member.getPersonId()));
         }
         return new FindGroupResult(group,members);
     }
@@ -52,6 +51,14 @@ public class GroupController {
         public FindGroupResult(Group group, List<Person> members) {
             this.group = group;
             this.members = members;
+        }
+
+        public Group getGroup() {
+            return group;
+        }
+
+        public List<Person> getMembers() {
+            return members;
         }
     }
 
@@ -66,8 +73,11 @@ public class GroupController {
 
     @RequestMapping(value = "/group", method = RequestMethod.POST)
     public Group createGroup(@RequestBody Group group) {
-        long id = sequenceGenerator.invoke();
-        group.setId(id);
+        long id = group.getId();
+        if(id ==0) {
+            id = sequenceGenerator.invoke();
+            group.setId(id);
+        }
         return groupRepository.save(group);
     }
 

@@ -11,15 +11,15 @@ public class Physician {
     private long id;
     private String firstName;
     private String lastName;
-    private long AddressId;
+    private Address officeAddress;
 
     public Physician(){
     }
 
-    public Physician(String firstName, String lastName, long AddressId) {
+    public Physician(String firstName, String lastName, Address officeAddress) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.AddressId = AddressId;
+        this.officeAddress = officeAddress;
     }
 
     public long getId() {
@@ -34,8 +34,8 @@ public class Physician {
         return lastName;
     }
 
-    public long getAddress() {
-        return AddressId;
+    public Address getOfficeAddress() {
+        return officeAddress;
     }
 
     public void setId(long id) {

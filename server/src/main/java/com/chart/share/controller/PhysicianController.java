@@ -16,10 +16,7 @@ public class PhysicianController {
 
     @Autowired
     private PhysicianRepository physicianRepository;
-
-    @Autowired
-    private PersonRepository personRepository;
-
+    
     @Autowired
     private SequenceGenerator sequenceGenerator;
 
@@ -32,8 +29,11 @@ public class PhysicianController {
 
     @RequestMapping(value = "/physician", method = RequestMethod.POST)
     public Physician createPhysician(@RequestBody Physician physician){
-        long id = sequenceGenerator.invoke();
-        physician.setId(id);
+        long id = physician.getId();
+        if(id ==0) {
+            id = sequenceGenerator.invoke();
+            physician.setId(id);
+        }
         return physicianRepository.save(physician);
     }
 

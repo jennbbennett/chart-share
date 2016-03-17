@@ -16,13 +16,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 @RestController
 @RequestMapping("/service")
 public class MedicationController {
-
-    @Autowired
-    private PersonRepository personRepository;
-
-    @Autowired
-    private PhysicianRepository physicianRepository;
-
+    
     @Autowired
     private MedicationRepository medicationRepository;
 
@@ -38,18 +32,14 @@ public class MedicationController {
 
     @RequestMapping(value = "/medication", method = RequestMethod.POST)
     public Medication createMedication(@RequestBody Medication medication) {
-        long id = sequenceGenerator.invoke();
-        medication.setId(id);
+        long id = medication.getId();
+        if(id == 0) {
+            id = sequenceGenerator.invoke();
+            medication.setId(id);
+        }
         return medicationRepository.save(medication);
     }
 
-    @RequestMapping(value = "/medication/{id}", method = RequestMethod.POST)
-    public Medication updateMedication(@PathVariable long id, @RequestBody Medication medication){
-        Medication updateMedication;
-        updateMedication = medicationRepository.findOne(id);
-        updateMedication = medicationRepository.save(medication);
-        return updateMedication;
-    }
 
     @RequestMapping(value = "medication/{id}", method = RequestMethod.DELETE)
     public Boolean deleteMedication(@PathVariable long id){

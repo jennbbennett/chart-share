@@ -17,20 +17,16 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/service")
 public class PersonController {
 
-    @Autowired
-    private GroupRepository groupRepository;
 
     @Autowired
     private PersonRepository personRepository;
 
-    @Autowired
-    private GroupMemberRepository groupMemberRepository;
 
     @Autowired
     private SequenceGenerator sequenceGenerator;
 
     @RequestMapping(value = "/person/{id}", method = RequestMethod.GET)
-    public Person getPerson(@PathVariable long id){
+    public Person getPerson(@PathVariable long id) {
         Person returnPerson;
         returnPerson = personRepository.findOne(id);
         return returnPerson;
@@ -38,14 +34,17 @@ public class PersonController {
 
     @RequestMapping(value = "/person", method = RequestMethod.POST)
     public Person createPerson(@RequestBody Person person) {
-        long id =  sequenceGenerator.invoke();
-        person.setId(id);
+        long id = person.getId();
+        if (id == 0) {
+            id = sequenceGenerator.invoke();
+            person.setId(id);
+        }
         return personRepository.save(person);
     }
 
 
     @RequestMapping(value = "/person/{id}", method = RequestMethod.DELETE)
-    public Boolean deletePerson(@PathVariable long id){
+    public Boolean deletePerson(@PathVariable long id) {
         personRepository.delete(id);
         return true;
     }

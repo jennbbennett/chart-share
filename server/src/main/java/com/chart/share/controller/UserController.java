@@ -1,8 +1,8 @@
 package com.chart.share.controller;
 
-import com.chart.share.domain.CSUser;
+import com.chart.share.domain.User;
 import com.chart.share.domain.Person;
-import com.chart.share.repository.CSUserRepository;
+import com.chart.share.repository.UserRepository;
 import com.chart.share.repository.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -15,34 +15,41 @@ import org.springframework.web.bind.annotation.*;
 public class UserController {
 
     @Autowired
-    private CSUserRepository userRepository;
+    private UserRepository userRepository;
 
     @Autowired
     private PersonRepository personRepository;
 
+    @Autowired
+    private SequenceGenerator sequenceGenerator;
+
     @RequestMapping(value = "/{source}/{id}", method = RequestMethod.GET)
     public jsUser getUser(@PathVariable String source, @PathVariable String id) {
         System.out.println("Looking for a user with an id of " + id);
-        CSUser csUser = userRepository.findByAuthId(id);
+        User user = userRepository.findByAuthId(id);
         Person person = null;
-        jsUser user = null;
-        if (csUser != null) {
-            person = personRepository.findOne(csUser.getPersonId());
+        jsUser jsUser = null;
+        if (user != null) {
+            person = personRepository.findOne(user.getPersonId());
             if (person != null) {
-                user = new jsUser(csUser, person);
+                jsUser = new jsUser(user, person);
             }
         }
-        return user;
+        return jsUser;
     }
 
 
     @RequestMapping(value = "/{source}/{id}", method = RequestMethod.POST)
-    public CSUser insertUser(@PathVariable String source, @PathVariable String id, @RequestBody Person person) {
-        CSUser returnUser;
+    public User insertUser(@PathVariable String source, @PathVariable String id, @RequestBody Person person) {
+        User returnUser;
         returnUser = userRepository.findByAuthId(id);
         if (returnUser == null) {
             person = personRepository.save(person);
-            returnUser = new CSUser(source, id, person.getId());
+            returnUser = new User(source, id, person.getId());
+            returnUser.setId(sequenceGenerator.invoke());
+            returnUser = userRepository.save(returnUser);
+        } else {
+            returnUser.setPersonId(person.getId());
             returnUser = userRepository.save(returnUser);
         }
         return returnUser;
@@ -50,7 +57,7 @@ public class UserController {
 
 
 
-    public class jsUser extends CSUser {
+    public class jsUser extends User {
         Person person;
 
         public jsUser(String authSource, String id, long personId, Person person) {
@@ -58,7 +65,7 @@ public class UserController {
             this.person = person;
         }
 
-        public jsUser(CSUser user, Person person) {
+        public jsUser(User user, Person person) {
             super(user.getAuthSource(), user.getAuthId(), user.getPersonId());
             this.person = person;
         }
@@ -68,16 +75,5 @@ public class UserController {
         }
     }
 
-    @RequestMapping("/{source}/{id}/seed")
-    public String seedData(@PathVariable String source, @PathVariable String id) {
 
-        Person person = new Person("Jenn", "Bennett");
-        person = personRepository.save(person);
-
-        CSUser user = new CSUser(source, id, person.getId());
-
-        user = userRepository.save(user);
-
-        return "done";
-    }
 }

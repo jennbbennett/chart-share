@@ -1,5 +1,6 @@
 package com.chart.share.domain;
 
+import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 
 import java.util.Date;
@@ -9,28 +10,23 @@ import java.util.Date;
  */
 public class GroupMember {
     @Id
-    long id;
+    ObjectId id;
     long groupId;
-    long memberId;
+    long personId;
     Date dateAdded;
 
-    public GroupMember(long id, long groupId, long memberId, Date dateAdded) {
-        this.id = id;
+    public GroupMember(long groupId, long personId, Date dateAdded) {
         this.groupId = groupId;
-        this.memberId = memberId;
+        this.personId = personId;
         this.dateAdded = dateAdded;
-    }
-
-    public long getId() {
-        return id;
     }
 
     public long getGroupId() {
         return groupId;
     }
 
-    public long getMemberId() {
-        return memberId;
+    public long getPersonId() {
+        return personId;
     }
 
     public Date getDateAdded() {

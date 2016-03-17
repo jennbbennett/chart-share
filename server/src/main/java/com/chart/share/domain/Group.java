@@ -13,20 +13,12 @@ public class Group {
     long id;
     String name;
 
-    List<GroupMember> members;
-
-
+    public Group() {
+    }
 
     public Group(long id, String name) {
         this.id = id;
         this.name = name;
-        members = new LinkedList<GroupMember>();
-    }
-
-    public Group(long id, String name, List<GroupMember> members) {
-        this.id = id;
-        this.name = name;
-        this.members = members;
     }
 
     public long getId() {
@@ -35,10 +27,6 @@ public class Group {
 
     public String getName() {
         return name;
-    }
-
-    public List<GroupMember> getMembers() {
-        return members;
     }
 
     public void setId(long id) {

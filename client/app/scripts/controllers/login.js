@@ -13,13 +13,13 @@ angular.module('chart-share')
       //debugger
       console.log("Checking OnLoad");
       if(authService.isAuthenticated()){
-          $location.path('/dashboard/home');
-        $state.transitionTo('dashboard');
+          $location.path('/signup');
+        $state.transitionTo('signup');
         }
     }
     $scope.submit = function() {
       if(authService.isAuthenticated()) {
-        $location.path('/dashboard/home');
+        $location.path('/signup');
       }
       	//return false;
 
