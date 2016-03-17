@@ -101,10 +101,10 @@ angular
         parent: 'dashboard',
         templateUrl: 'views/pages/dashboard/grid.html?v=' + window.app_version
       })
-      .state('blank', {
-        url: '/blank',
+      .state('physicians', {
+        url: '/physicians',
         parent: 'dashboard',
-        templateUrl: 'views/pages/dashboard/blank.html?v=' + window.app_version
+        templateUrl: 'views/pages/dashboard/physicians.html?v=' + window.app_version
       })
       .state('table', {
         url: '/table',

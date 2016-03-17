@@ -17,7 +17,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
+                        <tr ng-repeat="person in $scope.people">
                             <td>Jon</td>
                             <td>Brigman</td>
                             <td>March 3, 2016</td>
@@ -34,7 +34,7 @@
                         </tr>
                         </tbody>
                     </table>
-                    <button type="button" class="btn btn-info btn-rounded">Add a person</button>
+                    <a ui-sref="addperson"><button type="button" class="btn btn-info btn-rounded">Add a person</button></a>
                 </div>
             </div>
         </div>
@@ -76,7 +76,7 @@
                         </tr>
                         </tbody>
                     </table>
-                    <button type="button" class="btn btn-info btn-rounded">Add a physician</button>
+                    <a ui-sref="addphysician({name: person.name})"><button type="button" class="btn btn-info btn-rounded">Add a physician</button></a>
                 </div>
             </div>
         </div>
@@ -125,7 +125,7 @@
                         </tr>
                         </tbody>
                     </table>
-                    <button type="button" class="btn btn-info btn-rounded">Add a medication</button>
+                    <a ui-sref="addmedication"><button type="button" class="btn btn-info btn-rounded">Add a medication</button></a>
                 </div>
             </div>
         </div>
@@ -167,7 +167,7 @@
                         </tr>
                         </tbody>
                     </table>
-                    <button type="button" class="btn btn-info btn-rounded">Add a note</button>
+                    <a ui-sref="addnote"><button type="button" class="btn btn-info btn-rounded">Add a note</button></a>
                 </div>
             </div>
         </div>
