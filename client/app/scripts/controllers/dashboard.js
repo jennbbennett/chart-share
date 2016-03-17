@@ -37,10 +37,10 @@ angular.module('chart-share')
 			}
 		});
 	});
-	$scope.changeLanguage = (function (l) {
-
-		$translate.use(l);
-
-	});
+	//$scope.changeLanguage = (function (l) {
+    //
+	//	$translate.use(l);
+    //
+	//});
 
 });
