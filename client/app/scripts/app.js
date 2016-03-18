@@ -205,22 +205,18 @@ angular
   $rootScope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams){
     console.log("you are in run");
     //debugger;
-    var isAuthenticated;
-    authService.isAuthenticated().then(function(data){
-      console.log("response from isAuthenticated is", data);
-      isAuthenticated = data;
-    }, function(error){
-      console.log("error calling isAuthenticated");
-      isAuthenticated = false;
-    });
-    if (toState.authenticate && !isAuthenticated){
-      // User isn’t authenticated
-      console.log('you are not authenticated - logging in')
-      $state.transitionTo("login");
-      event.preventDefault();
-    } else if(authService.isAuthenticated()) {
-      console.log("Authenticated  - going to Dashboard", $rootScope.user);
+    authService.isAuthenticated(function(authenticated) {
+      console.log("response from isAuthenticated is", authenticated);
 
-    }
+      if (toState.authenticate && !authenticated) {
+        // User isn’t authenticated
+        console.log('you are not authenticated - logging in')
+        $state.transitionTo("login");
+        event.preventDefault();
+      } else if (authenticated) {
+        console.log("Authenticated  - going to Dashboard", $rootScope.user);
+
+      }
+    });
   });
 }]);

@@ -6,21 +6,22 @@
 angular.module('chart-share').factory('authService', ['$rootScope', '$http', '$location', function ($rootScope, $http, $location) {
   var authServiceInstance = {};
 
-  authServiceInstance.isAuthenticated = function () {
+  authServiceInstance.isAuthenticated = function (procAuth) {
     var self = {};
-
-    if (self.authenticated != true) {
+    console.log("In isAuthenticated - rootscope authenticated", $rootScope.authenticated);
+    if ($rootScope.authenticated != true) {
+      console.log("Checking with server");
       $http.get("/user")
-        .then(function success(data) {
+        .then(function success(resp) {
+            console.log("received response from server", resp.data.name);
 
-
-          if (data.name !== null) {
+          if (resp.data.name != undefined) {
             self.authenticated = true;
-            self.user = data.name;
-            self.source = data.source;
-            $rootScope.user = data.name;
-            $rootScope.source = data.source;
-            console.log(data.name);
+            self.user = resp.data.name;
+            self.source = resp.data.source;
+            $rootScope.user = resp.data.name;
+            $rootScope.source = resp.data.source;
+            console.log("return from call to /user",resp.data.name);
             $rootScope.authenticated = true;
 
             //going to get person data
@@ -32,8 +33,10 @@ angular.module('chart-share').factory('authService', ['$rootScope', '$http', '$l
               }, function error(err) {
                 console.log('request for person failed');
               });
+          } else {
+            self.authenticated = false;
           }
-
+          procAuth(self.authenticated);
     }, function error(err){
       console.log('request for authentication failed');
     })
@@ -42,6 +45,7 @@ angular.module('chart-share').factory('authService', ['$rootScope', '$http', '$l
     self.user = $rootScope.user;
     self.authenticated = true;
     self.source = $rootScope.source;
+      procAuth(self.authenticated);
   }
 };
 

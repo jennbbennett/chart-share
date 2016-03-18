@@ -11,29 +11,31 @@ angular.module('chart-share')
   .controller('LoginCtrl', ['$scope', '$location', '$timeout', '$q', '$state', 'authService','$rootScope', '$http', function ($scope, $location, $timeout, $q, $state, authService, $rootScope, $http) {
 
     $scope.checkOnLoad = function () {
-      console.log("Checking OnLoad");
-      //var authenticated = "";
-      //var profile =
-      if (authService.isAuthenticated()) {
-        if ($rootScope.person === undefined) {
-          console.log("Person is not known!!!");
-          $location.path('/signup');
-          $state.transitionTo('signup');
-        }
-        else {
-          console.log("Person is known");
+      authService.isAuthenticated(function(authenticated){
+        if(authenticated){
+          console.log("you don't need to login");
           $location.path('/dashboard/home');
           $state.transitionTo('home');
+        } else {
+          $state.transitionTo("login");
+          //event.preventDefault();
         }
-      }
+      })
     }
     $scope.submit = function () {
-      if (authService.isAuthenticated()) {
-        $location.path('/signup');
-        $state.transitionTo('signup');
+      console.log('Performing Login');
+      authService.isAuthenticated(function(authenticated){
+          if(authenticated){
+            $location.path('/dashboard/home');
+            $state.transitionTo('home');
+          } else {
+            $state.transitionTo("login");
+            //event.preventDefault();
+          }
+        })
       }
 
-    }
+
     //$scope.authenticate = function () {
     //
     //  var defer = $q.defer();
