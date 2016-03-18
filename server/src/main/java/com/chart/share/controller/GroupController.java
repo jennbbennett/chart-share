@@ -6,9 +6,11 @@ import com.chart.share.domain.Person;
 import com.chart.share.repository.GroupMemberRepository;
 import com.chart.share.repository.GroupRepository;
 import com.chart.share.repository.PersonRepository;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -37,18 +39,36 @@ public class GroupController {
         long groupId = groupMemberRepository.findByPersonId(personId).getGroupId();
         Group group = groupRepository.findOne(groupId);
         List<GroupMember> groupMembers = groupMemberRepository.findByGroupId(groupId);
-        List<Person> members = new LinkedList<>();
+        List<GroupMemberResult> members = new LinkedList<>();
         for (GroupMember member : groupMembers) {
-            members.add(personRepository.findOne(member.getPersonId()));
+            members.add(new GroupMemberResult(personRepository.findOne(member.getPersonId()), member.getDateAdded()));
         }
         return new FindGroupResult(group,members);
     }
 
+    class GroupMemberResult{
+        Person person;
+        @JsonFormat(pattern="MM-dd-yyyy")
+        Date dateAdded;
+
+        public GroupMemberResult(Person person, Date dateAdded) {
+            this.person = person;
+            this.dateAdded = dateAdded;
+        }
+
+        public Person getPerson() {
+            return person;
+        }
+
+        public Date getDateAdded() {
+            return dateAdded;
+        }
+    }
     class FindGroupResult {
         Group group;
-        List<Person> members;
+        List<GroupMemberResult> members;
 
-        public FindGroupResult(Group group, List<Person> members) {
+        public FindGroupResult(Group group, List<GroupMemberResult> members) {
             this.group = group;
             this.members = members;
         }
@@ -57,7 +77,7 @@ public class GroupController {
             return group;
         }
 
-        public List<Person> getMembers() {
+        public List<GroupMemberResult> getMembers() {
             return members;
         }
     }

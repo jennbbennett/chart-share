@@ -106,10 +106,10 @@ angular
         parent: 'dashboard',
         templateUrl: 'views/pages/dashboard/physicians.html?v=' + window.app_version
       })
-      .state('table', {
-        url: '/table',
+      .state('addphysician', {
+        url: '/addphysician',
         parent: 'dashboard',
-        templateUrl: 'views/pages/dashboard/table.html?v=' + window.app_version
+        templateUrl: 'views/pages/dashboard/addPhysician.html?v=' + window.app_version
       })
       .state('profile', {
         url: '/profile',
@@ -205,12 +205,22 @@ angular
   $rootScope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams){
     console.log("you are in run");
     //debugger;
-    if (toState.authenticate && !authService.isAuthenticated()){
+    var isAuthenticated;
+    authService.isAuthenticated().then(function(data){
+      console.log("response from isAuthenticated is", data);
+      isAuthenticated = data;
+    }, function(error){
+      console.log("error calling isAuthenticated");
+      isAuthenticated = false;
+    });
+    if (toState.authenticate && !isAuthenticated){
       // User isn’t authenticated
+      console.log('you are not authenticated - logging in')
       $state.transitionTo("login");
       event.preventDefault();
     } else if(authService.isAuthenticated()) {
       console.log("Authenticated  - going to Dashboard", $rootScope.user);
+
     }
   });
 }]);

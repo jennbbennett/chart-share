@@ -1,5 +1,7 @@
 package com.chart.share.security;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -14,12 +16,15 @@ import java.util.Map;
 @RestController
 public class SecurityController {
 
+    Logger log = LoggerFactory.getLogger(SecurityController.class);
+
     private static final String fakeId = "10153916257533903";
     private static final String fakeKey = "authedUser";
 
     @RequestMapping({"/user", "/me"})
     public Map<String, String> user(Principal principal,HttpServletRequest request) {
         Map<String, String> map = new LinkedHashMap<>();
+        log.info("In user function");
         if (principal != null) {
             map.put("name", principal.getName());
             map.put("source", "facebook");
