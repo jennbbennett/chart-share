@@ -1,29 +1,21 @@
 <div class="login-page">
 	<div class="row">
 		<div class="col-md-4 col-lg-4 col-md-offset-4 col-lg-offset-4">
-        	<!--<img src="images/chart.png" class="user-avatar" />-->
             <img src="images/chart.png" />
 			<h1>Chart Share</h1>
             <p>Welcome to your personal health record. What should we call you?</p>
-			<form role="form" ng-submit="submit()">
+			<form name="addPersonForm" role="form" ng-submit="addNewPerson(person)">
 				<div class="form-content">
 					<div class="form-group">
-						<input type="text" class="form-control input-underline input-lg" id="" placeholder=" {{ 'First Name' | translate }}">
+						<input type="text" class="form-control input-underline input-lg" name="firstName" id="firstName" ng-model= "person.firstName" placeholder=" {{ 'First Name' | translate }}">
 					</div>
 
 					<div class="form-group">
-						<input type="text" class="form-control input-underline input-lg" id="" placeholder="{{ 'Last Name' | translate }}">
+						<input type="text" class="form-control input-underline input-lg" name="lastName" id="lastName" ng-model="person.lastName" placeholder="{{ 'Last Name' | translate }}">
 					</div>
-
-					<!--<div class="form-group">-->
-						<!--<input type="password" class="form-control input-underline input-lg" id="" placeholder="{{ 'password' | translate }}">-->
-					<!--</div>-->
-					<!--<div class="form-group">-->
-						<!--<input type="password" class="form-control input-underline input-lg" id="" placeholder="{{ 'repeatpass' | translate }}">-->
-					<!--</div>-->
 				</div>
 				<!--<button type="submit" class="btn btn-white btn-outline btn-lg btn-rounded progress-login" progress-button="authenticate()">{{ 'register' | translate }}</button>&nbsp;-->
-				<a ui-sref="dashboard"><button type="submit" class="btn btn-white btn-outline btn-lg btn-rounded">Complete Profile</button></a>
+				<button type="submit" class="btn btn-white btn-outline btn-lg btn-rounded">Complete Profile</button>
 			</form>
 		</div>
 	</div>

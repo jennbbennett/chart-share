@@ -1,6 +1,6 @@
 package com.chart.share.controller;
 
-import com.chart.share.domain.Group;
+import com.chart.share.domain.CSGroup;
 import com.chart.share.domain.GroupMember;
 import com.chart.share.domain.Person;
 import com.chart.share.repository.GroupMemberRepository;
@@ -34,21 +34,38 @@ public class GroupController {
     @Autowired
     private SequenceGenerator sequenceGenerator;
 
+    @Autowired
+    private GroupMemberController groupMemberController;
+
     @RequestMapping(value = "/findgroup")
     public FindGroupResult findGroup(@RequestParam("personId") long personId) {
-        long groupId = groupMemberRepository.findByPersonId(personId).getGroupId();
-        Group group = groupRepository.findOne(groupId);
-        List<GroupMember> groupMembers = groupMemberRepository.findByGroupId(groupId);
         List<GroupMemberResult> members = new LinkedList<>();
-        for (GroupMember member : groupMembers) {
-            members.add(new GroupMemberResult(personRepository.findOne(member.getPersonId()), member.getDateAdded()));
+        GroupMember groupMember = groupMemberRepository.findByPersonId(personId);
+        CSGroup group = null;
+        if (groupMember != null) {
+            long groupId = groupMember.getGroupId();
+            group = groupRepository.findOne(groupId);
+            List<GroupMember> groupMembers = groupMemberRepository.findByGroupId(groupId);
+
+            for (GroupMember member : groupMembers) {
+                members.add(new GroupMemberResult(personRepository.findOne(member.getPersonId()), member.getDateAdded()));
+            }
+        } else {
+            group = new CSGroup(0, "Your CSGroup");
+            group = createGroup(group);
+            groupMemberController.addPersonToGroup(group.getId(), personId);
+            List<GroupMember> groupMembers = groupMemberRepository.findByGroupId(group.getId());
+
+            for (GroupMember member : groupMembers) {
+                members.add(new GroupMemberResult(personRepository.findOne(member.getPersonId()), member.getDateAdded()));
+            }
         }
-        return new FindGroupResult(group,members);
+        return new FindGroupResult(group, members);
     }
 
-    class GroupMemberResult{
+    class GroupMemberResult {
         Person person;
-        @JsonFormat(pattern="MM-dd-yyyy")
+        @JsonFormat(pattern = "MM-dd-yyyy")
         Date dateAdded;
 
         public GroupMemberResult(Person person, Date dateAdded) {
@@ -64,16 +81,17 @@ public class GroupController {
             return dateAdded;
         }
     }
+
     class FindGroupResult {
-        Group group;
+        CSGroup group;
         List<GroupMemberResult> members;
 
-        public FindGroupResult(Group group, List<GroupMemberResult> members) {
+        public FindGroupResult(CSGroup group, List<GroupMemberResult> members) {
             this.group = group;
             this.members = members;
         }
 
-        public Group getGroup() {
+        public CSGroup getGroup() {
             return group;
         }
 
@@ -83,18 +101,17 @@ public class GroupController {
     }
 
 
-
     @RequestMapping(value = "/group/{id}", method = RequestMethod.GET)
-    public Group getGroup(@PathVariable long id) {
-        Group returnGroup;
+    public CSGroup getGroup(@PathVariable long id) {
+        CSGroup returnGroup;
         returnGroup = groupRepository.findOne(id);
         return returnGroup;
     }
 
     @RequestMapping(value = "/group", method = RequestMethod.POST)
-    public Group createGroup(@RequestBody Group group) {
+    public CSGroup createGroup(@RequestBody CSGroup group) {
         long id = group.getId();
-        if(id ==0) {
+        if (id == 0) {
             id = sequenceGenerator.invoke();
             group.setId(id);
         }

@@ -48,7 +48,7 @@ angular
 
 
     $urlRouterProvider.when('/dashboard', '/dashboard/home');
-    $urlRouterProvider.otherwise('/login');
+    $urlRouterProvider.otherwise('/dashboard/home');
 
     $stateProvider
       .state('base', {
@@ -69,7 +69,7 @@ angular
         url: '/signup',
         parent: 'base',
         templateUrl: 'views/pages/signup.html?v=' + window.app_version,
-        controller: 'LoginCtrl',
+        controller: 'signupCtrl',
         authenticate: false
       })
       .state('404-page', {
@@ -203,7 +203,7 @@ angular
       });
   }).run(['$rootScope', '$state', 'authService', function ($rootScope, $state, authService) {
   $rootScope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams){
-    console.log("you are in run");
+    console.log("you are in state change start", fromState, toState);
     //debugger;
     authService.isAuthenticated(function(authenticated) {
       console.log("response from isAuthenticated is", authenticated);

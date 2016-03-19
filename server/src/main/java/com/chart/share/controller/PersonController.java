@@ -21,6 +21,8 @@ public class PersonController {
     @Autowired
     private PersonRepository personRepository;
 
+    @Autowired
+    private GroupMemberController groupMemberController;
 
     @Autowired
     private SequenceGenerator sequenceGenerator;
@@ -33,13 +35,17 @@ public class PersonController {
     }
 
     @RequestMapping(value = "/person", method = RequestMethod.POST)
-    public Person createPerson(@RequestBody Person person) {
+    public Person createPerson(@RequestBody Person person, @RequestParam(defaultValue = "0") long groupId) {
         long id = person.getId();
         if (id == 0) {
             id = sequenceGenerator.invoke();
             person.setId(id);
         }
-        return personRepository.save(person);
+        person = personRepository.save(person);
+        if(groupId > 0){
+            groupMemberController.addPersonToGroup(groupId, person.getId());
+        }
+        return person;
     }
 
 

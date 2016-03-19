@@ -17,19 +17,22 @@ public class Medication {
     private long rxRefillNumber;
     private Date rxDate;
     private long PhysicianId;
+    private long groupId;
+    private long personId;
 
     public Medication() {
 
     }
 
-    public Medication(long id, String rxName, long rxNumber, long rxQuantity, long rxRefillNumber, Date rxDate, long physicianId) {
-        this.id = id;
+    public Medication(String rxName, long rxNumber, long rxQuantity, long rxRefillNumber, Date rxDate, long physicianId, long groupId, long personId) {
         this.rxName = rxName;
         this.rxNumber = rxNumber;
         this.rxQuantity = rxQuantity;
         this.rxRefillNumber = rxRefillNumber;
         this.rxDate = rxDate;
-        this.PhysicianId = physicianId;
+        PhysicianId = physicianId;
+        this.groupId = groupId;
+        this.personId = personId;
     }
 
     public long getId() {
@@ -60,6 +63,13 @@ public class Medication {
         return PhysicianId;
     }
 
+    public long getGroupId() {
+        return groupId;
+    }
+
+    public long getPersonId() {
+        return personId;
+    }
 
     public void setId(long id) {
         this.id = id;

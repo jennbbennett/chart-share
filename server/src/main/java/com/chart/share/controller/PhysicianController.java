@@ -32,7 +32,7 @@ public class PhysicianController {
         long id = physician.getId();
         if(id ==0) {
             id = sequenceGenerator.invoke();
-            physician.setId(id);
+            physician.setId(id);git
         }
         return physicianRepository.save(physician);
     }

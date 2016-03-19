@@ -12,14 +12,16 @@ public class Physician {
     private String firstName;
     private String lastName;
     private Address officeAddress;
+    private long groupId;
 
     public Physician(){
     }
 
-    public Physician(String firstName, String lastName, Address officeAddress) {
+    public Physician(String firstName, String lastName, Address officeAddress, long groupId) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.officeAddress = officeAddress;
+        this.groupId = groupId;
     }
 
     public long getId() {
@@ -38,8 +40,10 @@ public class Physician {
         return officeAddress;
     }
 
+    public long getGroupId() {
+        return groupId;
+    }
     public void setId(long id) {
         this.id = id;
     }
-
 }

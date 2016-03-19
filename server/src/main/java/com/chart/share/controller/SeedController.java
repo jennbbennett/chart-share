@@ -27,11 +27,11 @@ public class SeedController {
     public SeedData seedData() {
 
         Person person = new Person("Jenn", "Bennett",new Address("2512 Bellavista Street","","Castle Rock","CO","80109"));
-        person = personController.createPerson(person);
+        person = personController.createPerson(person,0);
 
-        User user = userController.insertUser("facebook", "10153916257533903", person);
+        UserController.jsUser user = userController.insertUser("facebook", "10153916257533903", person);
 
-        Group group = groupController.createGroup(new Group(0,"Bennett Group"));
+        CSGroup group = groupController.createGroup(new CSGroup(0,"Bennett CSGroup"));
 
         GroupMember groupMember = groupMemberController.addPersonToGroup(group.getId(), person.getId());
 
@@ -40,10 +40,10 @@ public class SeedController {
 
     class SeedData {
         Person person;
-        User user;
+        UserController.jsUser user;
         GroupController.FindGroupResult groupResult;
 
-        public SeedData(Person person, User user, GroupController.FindGroupResult groupResult) {
+        public SeedData(Person person, UserController.jsUser user, GroupController.FindGroupResult groupResult) {
             this.person = person;
             this.user = user;
             this.groupResult = groupResult;
@@ -53,7 +53,7 @@ public class SeedController {
             return person;
         }
 
-        public User getUser() {
+        public UserController.jsUser getUser() {
             return user;
         }
 

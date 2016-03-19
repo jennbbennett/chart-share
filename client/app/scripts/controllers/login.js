@@ -10,24 +10,30 @@
 angular.module('chart-share')
   .controller('LoginCtrl', ['$scope', '$location', '$timeout', '$q', '$state', 'authService','$rootScope', '$http', function ($scope, $location, $timeout, $q, $state, authService, $rootScope, $http) {
 
-    $scope.checkOnLoad = function () {
-      authService.isAuthenticated(function(authenticated){
-        if(authenticated){
-          console.log("you don't need to login");
-          $location.path('/dashboard/home');
-          $state.transitionTo('home');
-        } else {
-          $state.transitionTo("login");
-          //event.preventDefault();
-        }
-      })
-    }
+    //$scope.checkOnLoad = function () {
+    //  console.log("Calling isAuthenticated from login checkOnLoad");
+    //  authService.isAuthenticated(function(authenticated){
+    //    if(authenticated){
+    //      console.log("you don't need to login");
+    //      $location.path('/dashboard/home');
+    //      $state.transitionTo('home');
+    //    } else {
+    //      $state.transitionTo("login");
+    //      //event.preventDefault();
+    //    }
+    //  })
+    //}
     $scope.submit = function () {
-      console.log('Performing Login');
+      console.log(' Login  onSubmit - calling isAuthenticated');
       authService.isAuthenticated(function(authenticated){
           if(authenticated){
-            $location.path('/dashboard/home');
-            $state.transitionTo('home');
+            if($rootScope.person !== undefined){
+              $location.path('/dashboard/home');
+              $state.transitionTo('home');
+            } else{
+              $location.path('/signup');
+              $state.transitionTo('signup');
+            }
           } else {
             $state.transitionTo("login");
             //event.preventDefault();
@@ -36,23 +42,6 @@ angular.module('chart-share')
       }
 
 
-    //$scope.authenticate = function () {
-    //
-    //  var defer = $q.defer();
-    //
-    //  $timeout(function () {
-    //
-    //    defer.resolve();
-    //
-    //    $timeout(function () {
-    //      //debugger;
-    //      $location.path('/dashboard/home');
-    //    }, 600);
-    //
-    //  }, 1100);
-    //
-    //  return defer.promise;
-    //
-    //}
-    $scope.checkOnLoad();
+
+    //$scope.checkOnLoad();
   }]);

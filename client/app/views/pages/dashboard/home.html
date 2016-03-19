@@ -1,5 +1,7 @@
 <div class="conter-wrapper home-container">
     <div class="row home-row">
+
+        <!--Group Panel-->
         <div class="col-md-6">
             <div class="panel panel-success">
                 <div class="panel-heading">
@@ -8,36 +10,49 @@
                     </h3>
                 </div>
                 <div class="panel-body">
-                    <table class="table table-hover">
-                        <thead>
-                        <tr>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>Date Added</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr ng-repeat="person in $scope.people">
-                            <td>Jon</td>
-                            <td>Brigman</td>
-                            <td>March 3, 2016</td>
-                        </tr>
-                        <tr>
-                            <td>Carter</td>
-                            <td>Bennett</td>
-                            <td>March 4, 2016</td>
-                        </tr>
-                        <tr>
-                            <td>Quinlan</td>
-                            <td>Bennett</td>
-                            <td>March 6, 2016</td>
-                        </tr>
-                        </tbody>
-                    </table>
-                    <a ui-sref="addperson"><button type="button" class="btn btn-info btn-rounded">Add a person</button></a>
+                    <form name="newMemberForm" role="form" ng-submit="createPerson(newMember)">
+                        <div class="form-content">
+                            <table class="table table-hover">
+                                <thead>
+                                <tr>
+                                    <th>First Name</th>
+                                    <th>Last Name</th>
+                                    <th>Date Added</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr ng-repeat="member in groupData.members">
+                                    <td>{{member.person.firstName}}</td>
+                                    <td>{{member.person.lastName}}</td>
+                                    <td>{{member.dateAdded}}</td>
+                                </tr>
+
+
+                                <tr ng-show = "view.addPersonShow">
+                                    <td><input type="text" size="10" name="firstName"
+                                               ng-model="newMember.person.firstName"
+                                               placeholder=" {{ 'First Name' | translate }}"></td>
+                                    <td><input type="text" size=10 name="lastName" id="lastName"
+                                               ng-model="newMember.person.lastName"
+                                               placeholder="{{ 'Last Name' | translate }}"></td>
+                                    <td>
+                                       <button type="submit">+</button>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </form>
+
+                        <button ng-show="!view.addPersonShow" type="button" class="btn btn-info btn-rounded" ng-click="toggleAddPersonShow()">Add a person</button>
+                        <button ng-show="view.addPersonShow" type="button" class="btn btn-info btn-rounded" ng-click="toggleAddPersonShow()">Cancel</button>
+
                 </div>
             </div>
         </div>
+
+        <!--Physician Panel-->
+
         <div class="col-md-6">
             <div class="panel panel-success">
                 <div class="panel-heading">
@@ -76,7 +91,9 @@
                         </tr>
                         </tbody>
                     </table>
-                    <a ui-sref="addphysician({name: person.name})"><button type="button" class="btn btn-info btn-rounded">Add a physician</button></a>
+                    <a ui-sref="addphysician({name: person.name})">
+                        <button type="button" class="btn btn-info btn-rounded">Add a physician</button>
+                    </a>
                 </div>
             </div>
         </div>
@@ -125,7 +142,9 @@
                         </tr>
                         </tbody>
                     </table>
-                    <a ui-sref="addmedication"><button type="button" class="btn btn-info btn-rounded">Add a medication</button></a>
+                    <a ui-sref="addmedication">
+                        <button type="button" class="btn btn-info btn-rounded">Add a medication</button>
+                    </a>
                 </div>
             </div>
         </div>
@@ -167,7 +186,9 @@
                         </tr>
                         </tbody>
                     </table>
-                    <a ui-sref="addnote"><button type="button" class="btn btn-info btn-rounded">Add a note</button></a>
+                    <a ui-sref="addnote">
+                        <button type="button" class="btn btn-info btn-rounded">Add a note</button>
+                    </a>
                 </div>
             </div>
         </div>

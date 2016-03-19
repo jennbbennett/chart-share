@@ -23,9 +23,12 @@ public class UserController {
     @Autowired
     private SequenceGenerator sequenceGenerator;
 
+    @Autowired
+    private PersonController personController;
+
     @RequestMapping(value = "/{source}/{id}", method = RequestMethod.GET)
     public jsUser getUser(@PathVariable String source, @PathVariable String id) {
-        System.out.println("Looking for a user with an id of " + id);
+//        System.out.println("Looking for a user with an id of " + id);
         User user = userRepository.findByAuthId(id);
         Person person = null;
         jsUser jsUser = null;
@@ -40,34 +43,38 @@ public class UserController {
 
 
     @RequestMapping(value = "/{source}/{id}", method = RequestMethod.POST)
-    public User insertUser(@PathVariable String source, @PathVariable String id, @RequestBody Person person) {
-        User returnUser;
-        returnUser = userRepository.findByAuthId(id);
-        if (returnUser == null) {
-            person = personRepository.save(person);
-            returnUser = new User(source, id, person.getId());
-            returnUser.setId(sequenceGenerator.invoke());
-            returnUser = userRepository.save(returnUser);
+    public jsUser insertUser(@PathVariable String source, @PathVariable String id, @RequestBody Person person) {
+        User user;
+        user = userRepository.findByAuthId(id);
+        if (user == null) {
+            person = personController.createPerson(person, 0);
+            user = new User(source, id, person.getId());
+            user.setId(sequenceGenerator.invoke());
+            user = userRepository.save(user);
         } else {
-            returnUser.setPersonId(person.getId());
-            returnUser = userRepository.save(returnUser);
+            if(person.getId() != 0) {
+                user.setPersonId(person.getId());
+                user = userRepository.save(user);
+            }
         }
-        return returnUser;
+        jsUser result = new jsUser(user, person);
+        return result;
     }
 
 
 
-    public class jsUser extends User {
+    public class jsUser {
         Person person;
+        User user;
 
-        public jsUser(String authSource, String id, long personId, Person person) {
-            super(authSource, id, personId);
+
+        public jsUser(User user, Person person) {
+            this.user = user;
             this.person = person;
         }
 
-        public jsUser(User user, Person person) {
-            super(user.getAuthSource(), user.getAuthId(), user.getPersonId());
-            this.person = person;
+        public User getUser() {
+            return user;
         }
 
         public Person getPerson() {

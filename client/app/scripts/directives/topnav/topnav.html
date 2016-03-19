@@ -7,7 +7,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" ui-sref="home">Hi Jenn{{name}}<span ng-bind="user.name"></span></a>
+        <a class="navbar-brand" ui-sref="home">Hi {{person.firstName}}<span ng-bind="user.name"></span></a>
     </div>
     <div class="collapse navbar-collapse">
 
@@ -42,9 +42,8 @@
             </li>
             <li class="dropdown admin-dropdown" dropdown on-toggle="toggled(open)">
                 <a href class="dropdown-toggle" dropdown-toggle><img src="images/chart.png" class="topnav-img" alt="">
-                    <span class="hidden-sm">User Name</span></a>
+                    <span class="hidden-sm">{{person.firstName}}</span></a>
                 <ul class="dropdown-menu pull-right animated fadeIn">
-                    <!--<li><a ui-sref="person">{{'Profile'}}</a></li>-->
                     <li><a ui-sref="login" ng-click="logOutUser()">{{'Log Out'}}</a></li>
                 </ul>
             </li>
@@ -52,7 +51,7 @@
     </div>
     <ul class="nav navbar-nav pull-right hidd">
         <li class="dropdown admin-dropdown" dropdown on-toggle="toggled(open)">
-            <a href class="dropdown-toggle animated fadeIn" dropdown-toggle><img src="images/flat-avatar.png"
+            <a href class="dropdown-toggle animated fadeIn" dropdown-toggle><img src="images/smallchart.png"
                                                                                  class="topnav-img" alt=""></a>
             <ul class="dropdown-menu pull-right">
                 <li><a ui-sref="profile">{{ 'profilee' | translate }}</a></li>
