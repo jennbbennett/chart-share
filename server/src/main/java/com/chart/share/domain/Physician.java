@@ -12,15 +12,17 @@ public class Physician {
     private String firstName;
     private String lastName;
     private Address officeAddress;
+    private String practice;
     private long groupId;
 
     public Physician(){
     }
 
-    public Physician(String firstName, String lastName, Address officeAddress, long groupId) {
+    public Physician(String firstName, String lastName, Address officeAddress, long groupId, String practice) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.officeAddress = officeAddress;
+        this.practice = practice;
         this.groupId = groupId;
     }
 
@@ -38,6 +40,10 @@ public class Physician {
 
     public Address getOfficeAddress() {
         return officeAddress;
+    }
+
+    public String getPractice() {
+        return practice;
     }
 
     public long getGroupId() {

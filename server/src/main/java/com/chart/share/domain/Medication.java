@@ -14,25 +14,28 @@ public class Medication {
     private String rxName;
     private long rxNumber;
     private long rxQuantity;
-    private long rxRefillNumber;
+    private String refills;
     private Date rxDate;
-    private long PhysicianId;
+    private long physicianId;
     private long groupId;
     private long personId;
+    private long rxCui;
 
     public Medication() {
 
     }
 
-    public Medication(String rxName, long rxNumber, long rxQuantity, long rxRefillNumber, Date rxDate, long physicianId, long groupId, long personId) {
+    public Medication(String rxName, long rxNumber, long rxQuantity, String refills, Date rxDate, long physicianId, long groupId, long personId, long rxCui) {
         this.rxName = rxName;
         this.rxNumber = rxNumber;
         this.rxQuantity = rxQuantity;
-        this.rxRefillNumber = rxRefillNumber;
+        this.refills = refills;
         this.rxDate = rxDate;
-        PhysicianId = physicianId;
+        this.physicianId = physicianId;
         this.groupId = groupId;
         this.personId = personId;
+        this.rxCui = rxCui;
+
     }
 
     public long getId() {
@@ -51,8 +54,8 @@ public class Medication {
         return rxQuantity;
     }
 
-    public long getRxRefillNumber() {
-        return rxRefillNumber;
+    public String getRefills() {
+        return refills;
     }
 
     public Date getRxDate() {
@@ -60,7 +63,7 @@ public class Medication {
     }
 
     public long getPhysicianId() {
-        return PhysicianId;
+        return physicianId;
     }
 
     public long getGroupId() {
@@ -69,6 +72,10 @@ public class Medication {
 
     public long getPersonId() {
         return personId;
+    }
+
+    public long getRxCui() {
+        return rxCui;
     }
 
     public void setId(long id) {

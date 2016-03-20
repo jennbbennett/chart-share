@@ -11,6 +11,8 @@ angular.module('chart-share')
   .controller('signupCtrl', ['$scope', '$location', '$timeout', '$state', '$rootScope', '$http', function ($scope, $location, $timeout, $state, $rootScope, $http) {
    console.log('I am in the signup controller');
     $scope.person = {};
+    $scope.person.firstName = $rootScope.principal.userAuthentication.details.first_name;
+    $scope.person.lastName = $rootScope.principal.userAuthentication.details.last_name;
     $scope.addNewPerson = function (person) {
       console.log("in addNewPerson");
       $http.post('/service/user/'+ $rootScope.principalSource +'/' + $rootScope.principalName, {

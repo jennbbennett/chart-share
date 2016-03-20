@@ -59,7 +59,7 @@ angular
         authenticate: true
       })
       .state('login', {
-        url: '/login',
+        url: '/logins',
         parent: 'base',
         templateUrl: 'views/pages/login.html?v=' + window.app_version,
         controller: 'LoginCtrl',
@@ -101,15 +101,20 @@ angular
         parent: 'dashboard',
         templateUrl: 'views/pages/dashboard/grid.html?v=' + window.app_version
       })
-      .state('physicians', {
-        url: '/physicians',
+      .state('physician', {
+        url: '/physician/{physicianId}',
         parent: 'dashboard',
-        templateUrl: 'views/pages/dashboard/physicians.html?v=' + window.app_version
+        templateUrl: 'views/pages/dashboard/physician.html?v=' + window.app_version
       })
       .state('addphysician', {
         url: '/addphysician',
         parent: 'dashboard',
         templateUrl: 'views/pages/dashboard/addPhysician.html?v=' + window.app_version
+      })
+      .state('addphysnote', {
+        url: '/addphysnote',
+        parent: 'dashboard',
+        templateUrl: 'views/pages/dashboard/addPhysNote.html?v=' + window.app_version
       })
       .state('profile', {
         url: '/profile',

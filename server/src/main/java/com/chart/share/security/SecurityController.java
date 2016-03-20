@@ -11,8 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 import java.security.Principal;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -32,30 +30,35 @@ public class SecurityController {
     @Autowired
     private PersonRepository personRepository;
 
-    @RequestMapping({"/user", "/me"})
+    @RequestMapping("/user")
     public Map<String, Object> user(Principal principal,HttpServletRequest request) {
         Map<String, Object> map = new LinkedHashMap<>();
 //        log.info("In user function");
         String principalName = null;
         String source = null;
+        log.warn("in /user request");
         boolean isFound = false;
         if (principal != null) {
+            log.warn("Principal is not null");
             isFound = true;
             principalName = principal.getName();
+            map.put("principal",principal);
             source = "facebook";
 
         } else {
-            principalName = (String)request.getSession().getAttribute(fakeKey);
-            if(principalName != null && principalName.length() > 2) {
-                isFound = true;
-                // this is for the fake login
-                source = "facebook";
-            }
+            log.warn("Principal is null");
+//            principalName = (String)request.getSession().getAttribute(fakeKey);
+//            if(principalName != null && principalName.length() > 2) {
+//                isFound = true;
+//                // this is for the fake login
+//                source = "facebook";
+//            }
         }
         if(isFound){
             map.put("principalName", principalName);
 //            map.put("source", source);
             User user = userRepository.findByAuthId(principalName);
+
             map.put("authenticated", true);
             map.put("user",user);
             Person person = null;
@@ -72,18 +75,18 @@ public class SecurityController {
 
     // methods to fake the login for now
 
-    @RequestMapping("/login/facebook")
-    public void fakeFacebookLogin(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        request.getSession().setAttribute(fakeKey,fakeId);
-        System.out.println("Fake Login");
-        response.sendRedirect("/");
-    }
-
-
-    @RequestMapping("/logout")
-    public Boolean fakeLogout(HttpServletRequest request){
-        request.getSession().setAttribute(fakeKey,null);
-        return true;
-    }
+//    @RequestMapping("/login/facebook")
+//    public void fakeFacebookLogin(HttpServletRequest request, HttpServletResponse response) throws IOException {
+//        request.getSession().setAttribute(fakeKey,fakeId);
+//        System.out.println("Fake Login");
+//        response.sendRedirect("/");
+//    }
+//
+//
+//    @RequestMapping("/logout")
+//    public Boolean fakeLogout(HttpServletRequest request){
+//        request.getSession().setAttribute(fakeKey,null);
+//        return true;
+//    }
 
 }

@@ -5,7 +5,7 @@
         <div class="col-md-6">
             <div class="panel panel-success">
                 <div class="panel-heading">
-                    <h3 class="panel-title">My Group: {{groupData.group.name}}
+                    <h3 class="panel-title">My Group
                         <div class="panel-control pull-right"></div>
                     </h3>
                 </div>
@@ -28,7 +28,7 @@
                                 </tr>
 
 
-                                <tr ng-show = "view.addPersonShow">
+                                <tr ng-show="view.addPersonShow">
                                     <td><input type="text" size="10" name="firstName"
                                                ng-model="newMember.person.firstName"
                                                placeholder=" {{ 'First Name' | translate }}"></td>
@@ -36,7 +36,7 @@
                                                ng-model="newMember.person.lastName"
                                                placeholder="{{ 'Last Name' | translate }}"></td>
                                     <td>
-                                       <button type="submit">+</button>
+                                        <button type="submit">+</button>
                                     </td>
                                 </tr>
                                 </tbody>
@@ -44,8 +44,12 @@
                         </div>
                     </form>
 
-                        <button ng-show="!view.addPersonShow" type="button" class="btn btn-info btn-rounded" ng-click="toggleAddPersonShow()">Add a person</button>
-                        <button ng-show="view.addPersonShow" type="button" class="btn btn-info btn-rounded" ng-click="toggleAddPersonShow()">Cancel</button>
+                    <button ng-show="!view.addPersonShow" type="button" class="btn btn-info btn-rounded"
+                            ng-click="toggleAddPersonShow()">Add a person
+                    </button>
+                    <button ng-show="view.addPersonShow" type="button" class="btn btn-info btn-rounded"
+                            ng-click="toggleAddPersonShow()">Cancel
+                    </button>
 
                 </div>
             </div>
@@ -57,141 +61,164 @@
             <div class="panel panel-success">
                 <div class="panel-heading">
                     <h3 class="panel-title">My Physicians
-                        <div class="panel-control pull-right">
-                            <a class="panelButton"><i class="fa fa-refresh"></i></a>
-                            <a class="panelButton"><i class="fa fa-minus"></i></a>
-                            <a class="panelButton"><i class="fa fa-remove"></i></a>
-                        </div>
+                        <div class="panel-control pull-right"></div>
                     </h3>
                 </div>
                 <div class="panel-body">
-                    <table class="table table-hover">
-                        <thead>
-                        <tr>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>Practice</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td>Regina</td>
-                            <td>Lurie</td>
-                            <td>Pediatrics</td>
-                        </tr>
-                        <tr>
-                            <td>Sara</td>
-                            <td>Logan</td>
-                            <td>Dental</td>
-                        </tr>
-                        <tr>
-                            <td>Gregg</td>
-                            <td>Lindsey</td>
-                            <td>Orthodontics</td>
-                        </tr>
-                        </tbody>
-                    </table>
-                    <a ui-sref="addphysician({name: person.name})">
-                        <button type="button" class="btn btn-info btn-rounded">Add a physician</button>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
+                    <form name="newPhysicianForm" role="form" ng-submit="createPhysician(physician)">
+                        <div class="form-content">
+                            <table class="table table-hover">
+                                <thead>
+                                <tr>
+                                    <th>First Name</th>
+                                    <th>Last Name</th>
+                                    <th>Practice</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr ng-repeat="physician in physicians" ui-sref="physician/({id: physicianId})">
+                                    <td>{{physician.firstName}}</td>
+                                    <td>{{physician.lastName}}</td>
+                                    <td>{{physician.practice}}</td>
+                                </tr>
+                                <tr ng-show="view.addPhysicianShow">
+                                    <td><input type="text" size="10" name="firstName"
+                                               ng-model="physician.firstName"
+                                               placeholder=" {{ 'First Name' | translate }}"></td>
+                                    <td><input type="text" size=10 name="lastName"
+                                               ng-model="physician.lastName"
+                                               placeholder="{{ 'Last Name' | translate }}"></td>
+                                    <td><input type="text" size=10 name="practice" id="practice"
+                                               ng-model="physician.practice"
+                                               placeholder="{{ 'Practice' | translate }}"></td>
+                                    <td>
+                                        <button type="submit">+</button>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </form>
 
-    <div class="row home-row">
-        <div class="col-md-6">
-            <div class="panel panel-success">
-                <div class="panel-heading">
-                    <h3 class="panel-title">My Medications
-                        <div class="panel-control pull-right">
-                            <a class="panelButton"><i class="fa fa-refresh"></i></a>
-                            <a class="panelButton"><i class="fa fa-minus"></i></a>
-                            <a class="panelButton"><i class="fa fa-remove"></i></a>
-                        </div>
-                    </h3>
-                </div>
-                <div class="panel-body">
-                    <table class="table table-hover">
-                        <thead>
-                        <tr>
-                            <th>Prescription Name</th>
-                            <th>Patient</th>
-                            <th>Physician</th>
-                            <th>Refills</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td>Amoxicillin</td>
-                            <td>Carter</td>
-                            <td>Lurie</td>
-                            <td>Yes</td>
-                        </tr>
-                        <tr>
-                            <td>Minocycline</td>
-                            <td>Quinlan</td>
-                            <td>Milobsky</td>
-                            <td>No</td>
-                        </tr>
-                        <tr>
-                            <td>Flonase</td>
-                            <td>Jon</td>
-                            <td>Franks</td>
-                            <td>No</td>
-                        </tr>
-                        </tbody>
-                    </table>
-                    <a ui-sref="addmedication">
-                        <button type="button" class="btn btn-info btn-rounded">Add a medication</button>
-                    </a>
+                    <button ng-show="!view.addPhysicianShow" type="button" class="btn btn-info btn-rounded"
+                            ng-click="toggleAddPhysicianShow()">Add a physician
+                    </button>
+                    <button ng-show="view.addPhysicianShow" type="button" class="btn btn-info btn-rounded"
+                            ng-click="toggleAddPhysicianShow()">Cancel
+                    </button>
+
                 </div>
             </div>
         </div>
-        <div class="col-md-6">
-            <div class="panel panel-success">
-                <div class="panel-heading">
-                    <h3 class="panel-title">My Notes
-                        <div class="panel-control pull-right">
-                            <a class="panelButton"><i class="fa fa-refresh"></i></a>
-                            <a class="panelButton"><i class="fa fa-minus"></i></a>
-                            <a class="panelButton"><i class="fa fa-remove"></i></a>
+
+        <!--Medication Panel-->
+
+
+        <div class="row home-row">
+            <div class="col-md-6">
+                <div class="panel panel-success">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">My Medications
+                            <div class="panel-control pull-right"></div>
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <form name="newMedicationForm" role="form" ng-submit="createMedication(medication)">
+                        <div class="form-content">
+                        <table class="table table-hover">
+                            <thead>
+                            <tr>
+                                <th>Prescription Name</th>
+                                <th>Patient</th>
+                                <th>Physician</th>
+                                <th>Refills</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="medication in medications">
+                                <td>{{medication.rxName}}</td>
+                                <td>{{medication.person.firstName}}</td>
+                                <td>{{medication.physician.lastName}}</td>
+                                <td>{{medication.refills}}</td>
+                            </tr>
+                            <tr ng-show="view.addMedicationShow">
+                                <td><input type="text" size="10" name="rxName"
+                                           ng-model="medication.rxName"
+                                           placeholder=" {{ 'rx Name' | translate }}"></td>
+                                <td><input type="text" size=10 name="lastName"
+                                           ng-model="medication.firstName"
+                                           placeholder="{{ 'Patient' | translate }}"></td>
+                                <td>
+                                    <!--<input type="text" size=10 name="physician" id="physician"-->
+                                           <!--ng-model="medication.physician"-->
+                                           <!--placeholder="{{ 'Physician' | translate }}">-->
+                                    <select  ng-options="physician as physician.lastName for physician in physicians track by physician.id" ng-model="medication.physicianId">
+                                    </select>
+                                </td>
+                                <td><input type="text" size=10 name="refills" id="refills"
+                                           ng-model="medication.refills"
+                                           placeholder="{{ 'Yes or No' | translate }}"></td>
+                                <td>
+                                    <button type="submit">+</button>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
                         </div>
-                    </h3>
+                            </form>
+                        <button ng-show="!view.addMedicationShow" type="button" class="btn btn-info btn-rounded"
+                                ng-click="toggleAddMedicationShow()">Add a medication
+                        </button>
+                        <button ng-show="view.addMedicationShow" type="button" class="btn btn-info btn-rounded"
+                                ng-click="toggleAddMedicationShow()">Cancel
+                        </button>
+
+                    </div>
                 </div>
-                <div class="panel-body">
-                    <table class="table table-hover">
-                        <thead>
-                        <tr>
-                            <th>Title</th>
-                            <th>Topic</th>
-                            <th>Patient</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td>Make Follow-Up Appointment</td>
-                            <td>Dentist</td>
-                            <td>Carter</td>
-                        </tr>
-                        <tr>
-                            <td>Call for refill</td>
-                            <td>Pediatrician</td>
-                            <td>Quinlan</td>
-                        </tr>
-                        <tr>
-                            <td>Check on test results</td>
-                            <td>Primary Care</td>
-                            <td>Jon</td>
-                        </tr>
-                        </tbody>
-                    </table>
-                    <a ui-sref="addnote">
-                        <button type="button" class="btn btn-info btn-rounded">Add a note</button>
-                    </a>
+            </div>
+
+            <!--Notes Panel-->
+            <div class="col-md-6">
+                <div class="panel panel-success">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">My Recent Notes
+                            <div class="panel-control pull-right">
+                            </div>
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <table class="table table-hover">
+                            <thead>
+                            <tr>
+                                <th>Title</th>
+                                <th>Topic</th>
+                                <th>Patient</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>Make Follow-Up Appointment</td>
+                                <td>Dentist</td>
+                                <td>Carter</td>
+                            </tr>
+                            <tr>
+                                <td>Call for refill</td>
+                                <td>Pediatrician</td>
+                                <td>Quinlan</td>
+                            </tr>
+                            <tr>
+                                <td>Check on test results</td>
+                                <td>Primary Care</td>
+                                <td>Jon</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <!--<a ui-sref="addnote">-->
+                            <!--<button type="button" class="btn btn-info btn-rounded">Add a note</button>-->
+                        <!--</a>-->
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 

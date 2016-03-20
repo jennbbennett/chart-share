@@ -18,6 +18,7 @@ angular.module('chart-share').factory('authService', ['$rootScope', '$http', '$l
           if (resp.data.authenticated == true) {
             $rootScope.user = resp.data.user;
             $rootScope.principalName = resp.data.principalName;
+            $rootScope.principal = resp.data.principal;
             $rootScope.principalSource  = 'facebook';
             console.log("return from call to /user",resp.data);
             $rootScope.authenticated = true;

@@ -21,7 +21,7 @@ angular.module('chart-share')
           console.log("clicked logout");
           authService.logout();
         }
-
+        //$scope.view.searchKeyword = '';
       }
     }
   }]);

@@ -31,11 +31,14 @@ bootRun {
 
 
 dependencies {
-	compile('org.springframework.boot:spring-boot-devtools')
-	compile('org.springframework.boot:spring-boot-starter-actuator')
-	//compile('org.springframework.boot:spring-boot-starter-security')
-	//compile('org.springframework.security.oauth:spring-security-oauth2')
+	compile('org.springframework.boot:spring-boot-starter-security')
+//	compile('org.springframework.boot:spring-boot-starter-social-facebook')
+//	compile('org.springframework.boot:spring-boot-starter-social-linkedin')
+//	compile('org.springframework.boot:spring-boot-starter-social-twitter')
 	compile('org.springframework.boot:spring-boot-starter-web')
+	compile('org.springframework.boot:spring-boot-starter-actuator')
+	compile('org.springframework.security.oauth:spring-security-oauth2')
+	compile('org.springframework.boot:spring-boot-devtools')
 	compile('org.springframework.boot:spring-boot-starter-data-mongodb')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 
