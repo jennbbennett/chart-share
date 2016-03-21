@@ -32,4 +32,6 @@ public class Patient {
     public Date getDateAdded() {
         return dateAdded;
     }
-}
+
+    }
+

@@ -1,0 +1,56 @@
+<pageheader pagename="addmedication"></pageheader>
+
+<div class="conter-wrapper">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-success">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Add or Update a Medication
+                        <div class="panel-control pull-right">
+                        </div>
+                    </h3>
+                </div>
+                <div class="panel-body">
+                    <form name="updateMedicationForm" role="form" ng-submit="createMedication(medication)">
+                        <div class="form-group">
+                            <label for="rxName">Medication Name</label>
+                            <input type="text" class="form-control underline" id="rxName" name="rxName" ng-model="medication.rxName"
+                                   placeholder="Enter medication name">
+                        </div>
+                        <div class="form-group">
+                            <label for="rxNumber">Prescription Number</label>
+                            <input type="text" class="form-control underline" id="rxNumber" name="rxNumber" ng-model="medication.rxNumber"
+                                   placeholder="Enter prescription number">
+                        </div>
+                        <div class="form-group">
+                            <label for="rxQuantity">Medication Quantity</label>
+                            <input type="text" class="form-control underline" id="rxQuantity" ng-model="medication.rxQuantity"
+                                   placeholder="Enter medication quantity">
+                        </div>
+                        <div class="form-group">
+                            <label for="refills">Refills Available</label>
+                            <input type="text" class="input-medium bfh-phone" id="refills" ng-model="medication.refills" placeholder="Yes or no?">
+                        </div>
+                        <div class="form-group">
+                            <label for="rxDate">Date Started</label>
+                            <input type="text" class="form-control underline" id="rxDate" ng-model="medication.rxDate"
+                                   placeholder="Enter date started">
+                        </div>
+                        <div class="form-group">
+                            <label for="patients">Patients</label>
+                            <select multiple ng-options="member as member.person.name for member in members track by member.person.id" ng-model="medication.patients" id="patients"></select>
+                        </div>
+                        <div class="form-group">
+                            <label for="physicians">Physician</label>
+                            <select  ng-options="physician as physician.lastName for physician in physicians track by physician.id" ng-model="medication.physicianId" id="physicians"></select>
+                        </div>
+
+                        <button type="submit" class="btn btn-info btn-rounded">Submit</button>
+
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

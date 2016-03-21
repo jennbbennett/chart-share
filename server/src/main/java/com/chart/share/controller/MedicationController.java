@@ -1,16 +1,12 @@
 package com.chart.share.controller;
 
-import com.chart.share.domain.GroupMember;
-import com.chart.share.domain.Medication;
-import com.chart.share.domain.Person;
-import com.chart.share.domain.Physician;
-import com.chart.share.repository.GroupMemberRepository;
-import com.chart.share.repository.MedicationRepository;
-import com.chart.share.repository.PersonRepository;
-import com.chart.share.repository.PhysicianRepository;
+import com.chart.share.domain.*;
+import com.chart.share.repository.*;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -37,12 +33,49 @@ public class MedicationController {
     @Autowired
     private PersonRepository personRepository;
 
+    @Autowired
+    private PatientRepository patientRepository;
+
     @RequestMapping(value = "/medication/{id}", method = RequestMethod.GET)
     public Medication getMedication(@PathVariable long id) {
         Medication returnMedication;
         returnMedication = medicationRepository.findOne(id);
         return returnMedication;
     }
+
+//    @RequestMapping(value = "/medication/patients/{physicianId}", method = RequestMethod.GET)
+//    public List<PatientResult> getPatientsByPhysicianId(@PathVariable long physicianId){
+//        List<Patient> patients;
+//        List<PatientResult> results = new LinkedList<>();
+//
+//        patients = patientRepository.findByPhysicianId(physicianId);
+//
+//        for(Patient patient : patients){
+//            Person person = personRepository.findOne(patient.getPersonId());
+//            results.add(new PatientResult(person, patient.getDateAdded()));
+//        }
+//        return results;
+//    }
+
+    class PatientResult {
+        Person person;
+        @JsonFormat(pattern = "MM-dd-yyyy")
+        Date dateAdded;
+
+        public PatientResult(Person person, Date dateAdded) {
+            this.person = person;
+            this.dateAdded = dateAdded;
+        }
+
+        public Person getPerson() {
+            return person;
+        }
+
+        public Date getDateAdded() {
+            return dateAdded;
+        }
+    }
+
 
     @RequestMapping(value = "/medication", method = RequestMethod.GET)
     public List<MedicationListItem> getGroupMedications(@RequestParam long personId){
@@ -127,6 +160,8 @@ public class MedicationController {
             this.refills = refills;
         }
     }
+
+
 
     @RequestMapping(value = "/medication", method = RequestMethod.POST)
     public Medication createMedication(@RequestBody Medication medication) {

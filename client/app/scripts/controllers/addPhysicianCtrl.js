@@ -64,12 +64,6 @@ angular.module('chart-share').controller('AddPhysicianCtrl', ['$scope', '$http',
     }).then(function (resp) {
       console.log("response from post", resp.data);
       $state.go('dashboard');
-      //$http.get('/service/physician?personId=' + $rootScope.person.id).then(function (response) {
-      //  console.log(response);
-      //  $scope.physicians = response.data;
-      //});
-      //$scope.physician = {};
-      //$scope.view.addPhysicianShow = false;
     });
   }
 

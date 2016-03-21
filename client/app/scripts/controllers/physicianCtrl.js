@@ -55,10 +55,4 @@ angular.module('chart-share').controller('PhysicianCtrl', ['$scope', '$http', '$
 
 
 
-
-
-
-
-
-
 }]);

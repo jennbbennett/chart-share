@@ -64,6 +64,7 @@ angular.module('chart-share').controller('HomeCtrl', ['$scope', '$http', '$timeo
   }
 
   $scope.physician = {};
+  console.log('current scope of physicians', $scope.physicians);
   $scope.createPhysician = function (physician) {
     console.log("I will create a physician with this information", physician);
     $http.post('/service/physician', {
@@ -83,6 +84,7 @@ angular.module('chart-share').controller('HomeCtrl', ['$scope', '$http', '$timeo
   }
 
   $scope.medication = {};
+  console.log('current scope of medications', $scope.medications);
   $scope.createMedication = function (medication){
     console.log("I will create a medication with this information", medication);
     $http.post('/service/medication', {
