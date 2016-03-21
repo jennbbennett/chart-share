@@ -40,4 +40,8 @@ public class Person {
     public void setId(long id) {
         this.id = id;
     }
+
+    public String getName() {
+        return firstName + " " + lastName;
+    }
 }

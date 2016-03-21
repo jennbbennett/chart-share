@@ -68,6 +68,9 @@ public class GroupController {
         @JsonFormat(pattern = "MM-dd-yyyy")
         Date dateAdded;
 
+        public GroupMemberResult() {
+        }
+
         public GroupMemberResult(Person person, Date dateAdded) {
             this.person = person;
             this.dateAdded = dateAdded;

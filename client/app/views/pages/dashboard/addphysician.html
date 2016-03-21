@@ -5,41 +5,38 @@
         <div class="col-md-12">
             <div class="panel panel-success">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Add a Physician
+                    <h3 class="panel-title">Add or Update a Physician
                         <div class="panel-control pull-right">
-                            <a class="panelButton"><i class="fa fa-refresh"></i></a>
-                            <a class="panelButton"><i class="fa fa-minus"></i></a>
-                            <a class="panelButton"><i class="fa fa-remove"></i></a>
                         </div>
                     </h3>
                 </div>
                 <div class="panel-body">
-                    <form>
+                    <form name="updatePhysicianForm" role="form" ng-submit="createPhysician(physician)">
                         <div class="form-group">
-                            <label for="physicianFirstName">First Name</label>
-                            <input type="text" class="form-control underline" id="physicianFirstName"
+                            <label for="firstName">First Name</label>
+                            <input type="text" class="form-control underline" id="firstName" name="firstName" ng-model="physician.firstName"
                                    placeholder="Enter first name">
                         </div>
                         <div class="form-group">
-                            <label for="physicianLastName">Last Name</label>
-                            <input type="text" class="form-control underline" id="physicianLastName"
+                            <label for="lastName">Last Name</label>
+                            <input type="text" class="form-control underline" id="lastName" name="lastName" ng-model="physician.lastName"
                                    placeholder="Enter last name">
                         </div>
                         <div class="form-group">
-                            <label for="physicianEmail">Email Address</label>
-                            <input type="email" class="form-control underline" id="physicianEmail"
+                            <label for="email">Email Address</label>
+                            <input type="email" class="form-control underline" id="email" ng-model="physician.email"
                                    placeholder="Enter email">
                         </div>
                         <div class="form-group">
-                            <label for="physicianPhone">Phone Number</label>
-                            <input type="text" class="input-medium bfh-phone" id="physicianPhone" data-country="US" placeholder="Enter phone">
+                            <label for="phoneNumber">Phone Number</label>
+                            <input type="text" class="input-medium bfh-phone" id="phoneNumber" ng-model="physician.phoneNumber"data-country="US" placeholder="Enter phone">
 
                             <!--<input type="phone" class="form-control underline" id="physicianPhone"-->
                                    <!--placeholder="Enter phone">-->
                         </div>
                         <div class="form-group">
                             <label for="physicianStreet1">Street 1</label>
-                            <input type="text" class="form-control underline" id="physicianStreet1"
+                            <input type="text" class="form-control underline" id="physicianStreet1" ng-model="physician.officeAddress.street1"
                                    placeholder="Enter street address or P.O. box">
                         </div>
                         <div class="form-group">
@@ -60,15 +57,14 @@
                         </div>
                         <div class="form-group">
                             <label for="patients">Patients</label>
-                            <input type="text" class="form-control underline" id="patients"
-                                   placeholder="Enter Patient Name">
-
+                            <select multiple ng-options="member as member.person.name for member in members track by member.person.id" ng-model="physician.patients" id="patients"></select>
                         </div>
 
 
 
 
                         <button type="submit" class="btn btn-info btn-rounded">Submit</button>
+
                     </form>
                 </div>
 

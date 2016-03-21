@@ -5,21 +5,21 @@
         <div class="col-md-12">
             <div class="panel panel-success">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Add a Physician Note
+                    <h3 class="panel-title">Add a Physician Note:  {{physician.firstName}} {{physician.lastName}}
                         <div class="panel-control pull-right">
                         </div>
                     </h3>
                 </div>
                 <div class="panel-body">
-                    <form>
+                    <form name="addPhysNoteForm" role="form" ng-submit="createPhysicianNote(note)">
                         <div class="form-group">
                             <label for="title">Title</label>
-                            <input type="text" class="form-control underline" id="title"
+                            <input type="text" class="form-control underline" id="title" ng-model="note.title"
                                    placeholder="Enter a title for your note">
                         </div>
                         <div class="form-group">
                             <label for="notetext">Note</label>
-                            <textarea type="text" class="form-control" rows="10" id="notetext"
+                            <textarea type="text" class="form-control" rows="10" id="notetext" ng-model="note.text"
                                       placeholder="Write your note">
                         </textarea>
                         </div>

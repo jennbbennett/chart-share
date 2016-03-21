@@ -8,3 +8,4 @@ server/src/main/resources/public
 *.bak
 .DS_Store
 build
+.gradle

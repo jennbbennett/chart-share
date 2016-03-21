@@ -8,12 +8,12 @@ angular.module('chart-share').factory('authService', ['$rootScope', '$http', '$l
 
   authServiceInstance.isAuthenticated = function (procAuth) {
     var self = {};
-    //console.log("In isAuthenticated - rootscope authenticated", $rootScope.authenticated);
+    console.log("In isAuthenticated - rootscope authenticated", $rootScope.authenticated);
     if ($rootScope.authenticated != true) {
       //console.log("Checking with server");
       $http.get("/user")
         .then(function success(resp) {
-            //console.log("received response from server", resp.data.name);
+            console.log("AuthService - received response from server", resp.data.name);
 
           if (resp.data.authenticated == true) {
             $rootScope.user = resp.data.user;
@@ -28,7 +28,9 @@ angular.module('chart-share').factory('authService', ['$rootScope', '$http', '$l
           }
           procAuth($rootScope.authenticated);
     }, function error(err){
+          $rootScope.authenticated = false;
       console.log('request for authentication failed');
+          procAuth($rootScope.authenticated);
     })
 } else {
   console.log("user", $rootScope.user, $rootScope.authenticated);

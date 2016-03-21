@@ -59,7 +59,7 @@ angular
         authenticate: true
       })
       .state('login', {
-        url: '/logins',
+        url: '/login',
         parent: 'base',
         templateUrl: 'views/pages/login.html?v=' + window.app_version,
         controller: 'LoginCtrl',
@@ -102,19 +102,22 @@ angular
         templateUrl: 'views/pages/dashboard/grid.html?v=' + window.app_version
       })
       .state('physician', {
-        url: '/physician/{physicianId}',
+        url: '/physician/:physicianId',
         parent: 'dashboard',
-        templateUrl: 'views/pages/dashboard/physician.html?v=' + window.app_version
+        templateUrl: 'views/pages/dashboard/physician.html?v=' + window.app_version,
+        controller: 'PhysicianCtrl'
       })
       .state('addphysician', {
-        url: '/addphysician',
+        url: '/addphysician/:physicianId',
         parent: 'dashboard',
-        templateUrl: 'views/pages/dashboard/addPhysician.html?v=' + window.app_version
+        templateUrl: 'views/pages/dashboard/addPhysician.html?v=' + window.app_version,
+        controller:'AddPhysicianCtrl'
       })
       .state('addphysnote', {
-        url: '/addphysnote',
+        url: '/addphysnote/:physicianId',
         parent: 'dashboard',
-        templateUrl: 'views/pages/dashboard/addPhysNote.html?v=' + window.app_version
+        templateUrl: 'views/pages/dashboard/addPhysNote.html?v=' + window.app_version,
+        controller: 'AddPhysNoteCtrl'
       })
       .state('profile', {
         url: '/profile',

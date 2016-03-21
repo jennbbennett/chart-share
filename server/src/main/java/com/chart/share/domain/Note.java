@@ -1,5 +1,6 @@
 package com.chart.share.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.data.annotation.Id;
 
 import java.util.Date;
@@ -13,13 +14,19 @@ public class Note {
     private String text;
     private DomainType targetType;
     private long targetId;
+    @JsonFormat(pattern = "MM-dd-yyyy hh:mm aa")
     private Date dateAdded;
+    private String title;
 
-    public Note(String text, DomainType targetType, long targetId, Date dateAdded) {
+    public Note() {
+    }
+
+    public Note(String text, DomainType targetType, long targetId, Date dateAdded, String title) {
         this.text = text;
         this.targetType = targetType;
         this.targetId = targetId;
         this.dateAdded = dateAdded;
+        this.title = title;
     }
 
     public long getId() {
@@ -42,6 +49,15 @@ public class Note {
         return dateAdded;
     }
 
-    public void set(long id) {
+    public String getTitle() {
+        return title;
+    }
+    
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public void setDateAdded(Date dateAdded) {
+        this.dateAdded = dateAdded;
     }
 }

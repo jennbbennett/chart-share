@@ -1,9 +1,14 @@
 package com.chart.share.controller;
 
+import com.chart.share.domain.DomainType;
 import com.chart.share.domain.Note;
 import com.chart.share.repository.NoteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Date;
+import java.util.List;
 
 /**
  * Created by jenn on 3/20/16.
@@ -20,6 +25,11 @@ public class NoteController {
     @Autowired
     private NoteRepository noteRepository;
 
+    @RequestMapping(value = "/note/{targetType}/{targetId}", method = RequestMethod.GET)
+    public List<Note> getNotesForTarget(@PathVariable DomainType targetType, @PathVariable Long targetId){
+        return noteRepository.findByTargetTypeAndTargetId(targetType, targetId);
+    }
+
     @RequestMapping(value = "/note/{id}", method = RequestMethod.GET)
     public Note getNote(@PathVariable long id){
         Note returnNote;
@@ -32,8 +42,9 @@ public class NoteController {
         long id = note.getId();
         if(id ==0) {
             id = sequenceGenerator.invoke();
-            note.set(id);
+            note.setId(id);
         }
+        note.setDateAdded(new Date());
         return noteRepository.save(note);
     }
 

@@ -47,7 +47,7 @@ public class SecurityConfigAdapter extends WebSecurityConfigurerAdapter {
             @Override
             protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response,
                                             FilterChain filterChain) throws ServletException, IOException {
-                logger.warn("###################################### - In doFilterInternal - request for " + request.getRequestURI());
+//                logger.warn("###################################### - In doFilterInternal - request for " + request.getRequestURI());
                 CsrfToken csrf = (CsrfToken) request.getAttribute(CsrfToken.class.getName());
                 if (csrf != null) {
                     Cookie cookie = WebUtils.getCookie(request, "XSRF-TOKEN");
@@ -64,7 +64,7 @@ public class SecurityConfigAdapter extends WebSecurityConfigurerAdapter {
     }
 
     private CsrfTokenRepository csrfTokenRepository() {
-        logger.warn("###################################### - In csrfTokenRepository");
+//        logger.warn("###################################### - In csrfTokenRepository");
         HttpSessionCsrfTokenRepository repository = new HttpSessionCsrfTokenRepository();
         repository.setHeaderName("X-XSRF-TOKEN");
         return repository;

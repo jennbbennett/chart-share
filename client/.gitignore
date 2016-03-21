@@ -4,3 +4,5 @@ bower_components/
 #public/
 gen/
 dist/
+build
+.gradle

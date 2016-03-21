@@ -76,7 +76,7 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr ng-repeat="physician in physicians" ui-sref="physician/({id: physicianId})">
+                                <tr ng-repeat="physician in physicians" ui-sref="physician({physicianId: physician.id})">
                                     <td>{{physician.firstName}}</td>
                                     <td>{{physician.lastName}}</td>
                                     <td>{{physician.practice}}</td>
@@ -137,8 +137,8 @@
                             <tbody>
                             <tr ng-repeat="medication in medications">
                                 <td>{{medication.rxName}}</td>
-                                <td>{{medication.person.firstName}}</td>
-                                <td>{{medication.physician.lastName}}</td>
+                                <td>{{medication.patientName}}</td>
+                                <td>{{medication.physicianName}}</td>
                                 <td>{{medication.refills}}</td>
                             </tr>
                             <tr ng-show="view.addMedicationShow">

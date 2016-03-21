@@ -4,61 +4,72 @@
         <div class="col-md-10">
             <div class="panel panel-success">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Dr. Regina Lurie
+                    <h3 class="panel-title">{{physician.firstName}} {{physician.lastName}}
                         <div class="panel-control pull-right">
-                            <a class="panelButton"><i class="fa fa-refresh"></i></a>
-                            <a class="panelButton"><i class="fa fa-minus"></i></a>
-                            <a class="panelButton"><i class="fa fa-remove"></i></a>
                         </div>
                     </h3>
                 </div>
                 <div class="panel-body">
                     <ul class="list-group">
-                        <li class="list-group-item">Cras justo odio</li>
-                        <li class="list-group-item">Dapibus ac facilisis in</li>
-                        <li class="list-group-item">Morbi leo risus</li>
-                        <li class="list-group-item">Porta ac consectetur ac</li>
-                        <li class="list-group-item">Vestibulum at eros</li>
+                        <li class="list-group-item">Practice: {{physician.practice}}</li>
+                        <li class="list-group-item">Email Address:</li>
+                        <li class="list-group-item">Phone Number:</li>
+                        <li class="list-group-item">Address:</li>
                     </ul>
                     <div class="panel-btn">
-                        <button type="button" class="btn btn-primary pull-right btn-rounded">
-                            Update Info
+                        <button ui-sref="addphysician({physicianId: physician.id})" type="button"
+                                class="btn btn-primary pull-left btn-rounded">
+                            Update Physician Info
+                        </button>
+                        <button type="button" class="btn btn-primary pull-right btn-rounded" ng-click="">
+                            Delete Physician
                         </button>
                     </div>
                 </div>
             </div>
         </div>
+
         <div class="row">
             <div class="col-md-10">
                 <div class="panel panel-success">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Notes
+                        <h3 class="panel-title">Patients
                             <div class="panel-control pull-right">
-                                <a class="panelButton"><i class="fa fa-refresh"></i></a>
-                                <a class="panelButton"><i class="fa fa-minus"></i></a>
-                                <a class="panelButton"><i class="fa fa-remove"></i></a>
                             </div>
                         </h3>
                     </div>
                     <div class="panel-body">
-                        <div class="panel-body">
-                        <h4>Title</h4>
-                        <h4>Date</h4>
-                       <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                            </div>
-                    <div class="panel-btn">
-                        <button type="button" class="btn btn-primary pull-right btn-rounded">
-                            Add Note
-                        </button>
+                        <ul class="list-group">
+                            <li ng-repeat="patient in physician.patients" class="list-group-item">{{patient.person.name}}</li>
+                        </ul>
                     </div>
                 </div>
             </div>
-        </div>
+
+            <div class="row">
+                <div class="col-md-10">
+                    <div class="panel panel-success">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Notes
+                            </h3>
+                            <!--<div class="panel-control pull-right">-->
+
+                            <!--</div>-->
+                            <button ui-sref="addphysnote({physicianId: physician.id}) " type="button"
+                                    class="btn btn-primary pull-right btn-rounded">
+                                Add Note
+                            </button>
+                        </div>
+                        <div class="panel-body" ng-repeat="note in physician.notes">
+                            <div class="panel-body">
+                                <h4>{{note.title}}</h4>
+                                <h4>{{note.dateAdded}}</h4>
+                                <p>{{note.text}}</p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
             </div>
 
 
