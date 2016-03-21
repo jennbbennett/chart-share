@@ -135,7 +135,7 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr ng-repeat="medication in medications">
+                            <tr ng-repeat="medication in medications" ui-sref="medication({medicationId: medication.id})">
                                 <td>{{medication.rxName}}</td>
                                 <td>{{medication.patientName}}</td>
                                 <td>{{medication.physicianName}}</td>

@@ -41,18 +41,24 @@
                         </div>
                         <div class="form-group">
                             <label for="physicianStreet2">Street 2</label>
-                            <input type="text" class="form-control underline" id="physicianStreet2"
+                            <input type="text" class="form-control underline" id="physicianStreet2" ng-model="physician.officeAddress.street2"
                                    placeholder="Enter apartment, suite, or unit">
                         </div>
                         <div class="form-group">
                             <label for="physicianCity">City</label>
-                            <input type="text" class="form-control underline" id="physicianCity"
+                            <input type="text" class="form-control underline" id="physicianCity" ng-model="physician.officeAddress.city"
                                    placeholder="Enter city">
                         </div>
                         <div class="form-group">
                             <label for="physicianState">State</label>
-                            <input type="text" class="form-control underline" id="physicianState"
+                            <input type="text" class="form-control underline" id="physicianState" ng-model="physician.officeAddress.state"
                                    placeholder="Enter State">
+
+                        </div>
+                        <div class="form-group">
+                            <label for="physicianZipCode">Zip Code</label>
+                            <input type="text" class="form-control underline" id="physicianZipCode" ng-model="physician.officeAddress.zipCode"
+                                   placeholder="Enter Zip Code">
 
                         </div>
                         <div class="form-group">

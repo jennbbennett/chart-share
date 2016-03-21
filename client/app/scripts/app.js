@@ -91,16 +91,6 @@ angular
         controller: 'HomeCtrl',
         authenticate: true
       })
-      .state('typography', {
-        url: '/typography',
-        parent: 'dashboard',
-        templateUrl: 'views/pages/dashboard/typography.html?v=' + window.app_version
-      })
-      .state('grid', {
-        url: '/grid',
-        parent: 'dashboard',
-        templateUrl: 'views/pages/dashboard/grid.html?v=' + window.app_version
-      })
       .state('physician', {
         url: '/physician/:physicianId',
         parent: 'dashboard',
@@ -124,6 +114,24 @@ angular
         parent: 'dashboard',
         templateUrl: 'views/pages/dashboard/profile.html?v=' + window.app_version
       })
+      .state('medication', {
+        url: '/medication/:medicationId',
+        parent: 'dashboard',
+        templateUrl: 'views/pages/dashboard/medication.html?v=' + window.app_version,
+        controller: 'MedicationCtrl'
+      })
+      .state('addmedication', {
+        url: '/addmedication/:medicationId',
+        parent: 'dashboard',
+        templateUrl: 'views/pages/dashboard/addMedication.html?v=' + window.app_version,
+        controller:'AddMedicationCtrl'
+      })
+      .state('addmednote', {
+        url: '/addmednote/:medicationId',
+        parent: 'dashboard',
+        templateUrl: 'views/pages/dashboard/addMedNote.html?v=' + window.app_version,
+        controller: 'AddMedNoteCtrl'
+      })
       .state('elements', {
         url: '/form/elements',
         parent: 'dashboard',
@@ -134,13 +142,21 @@ angular
         parent: 'dashboard',
         templateUrl: 'views/pages/dashboard/forms/components.html?v=' + window.app_version
       })
-
+      .state('typography', {
+        url: '/typography',
+        parent: 'dashboard',
+        templateUrl: 'views/pages/dashboard/typography.html?v=' + window.app_version
+      })
+      .state('grid', {
+        url: '/grid',
+        parent: 'dashboard',
+        templateUrl: 'views/pages/dashboard/grid.html?v=' + window.app_version
+      })
       .state('button', {
         url: '/ui-interface/button',
         parent: 'dashboard',
         templateUrl: 'views/pages/dashboard/ui-elements/button.html?v=' + window.app_version
       })
-
       .state('dropdown', {
         url: '/ui-interface/dropdown',
         parent: 'dashboard',

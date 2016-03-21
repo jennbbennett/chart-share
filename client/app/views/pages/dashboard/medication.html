@@ -1,33 +1,29 @@
-<pageheader pagename="physician"></pageheader>
+<pageheader pagename="medication"></pageheader>
 <div class="conter-wrapper">
     <div class="row">
         <div class="col-md-10">
             <div class="panel panel-success">
                 <div class="panel-heading">
-                    <h3 class="panel-title">{{physician.firstName}} {{physician.lastName}}
+                    <h3 class="panel-title">Medication:  {{medication.rxName}}
                         <div class="panel-control pull-right">
                         </div>
                     </h3>
                 </div>
                 <div class="panel-body">
                     <ul class="list-group">
-                        <li class="list-group-item">Practice: {{physician.practice}}</li>
-                        <li class="list-group-item">Email Address: {{physician.email}}</li>
-                        <li class="list-group-item">Phone Number: {{physician.phoneNumber}}</li>
-                        <li class="list-group-item">Address:
-                            <p>{{physician.officeAddress.street1}}</p>
-                            <p>{{physician.officeAddress.street2}}</p>
-                            <p>{{physician.officeAddress.city}}, {{physician.officeAddress.state}}</p>
-                            <p>{{physician.officeAddress.zipCode}}</p>
-                        </li>
+                        <li class="list-group-item">Medication Name: {{medication.rxName}}</li>
+                        <li class="list-group-item">Prescription Number: {{medication.rxNumber}}</li>
+                        <li class="list-group-item">Quantity in Medication: {{medication.quantity}}</li>
+                        <li class="list-group-item">Prescription Date: {{medication.rxDate}}</li>
+                        <li class="list-group-item">Refills: {{medication.refills}}</li>
                     </ul>
                     <div class="panel-btn">
-                        <button ui-sref="addphysician({physicianId: physician.id})" type="button"
+                        <button ui-sref="addmedication({medicationId: medication.id})" type="button"
                                 class="btn btn-primary pull-left btn-rounded">
-                            Update Physician Info
+                            Update Medication Info
                         </button>
                         <button type="button" class="btn btn-primary pull-right btn-rounded" ng-click="">
-                            Delete Physician
+                            Delete Medication
                         </button>
                     </div>
                 </div>
@@ -38,16 +34,14 @@
             <div class="col-md-10">
                 <div class="panel panel-success">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Patients
+                        <h3 class="panel-title">Patient
                             <div class="panel-control pull-right">
                             </div>
                         </h3>
                     </div>
                     <div class="panel-body">
                         <ul class="list-group">
-                            <li ng-repeat="patient in physician.patients" class="list-group-item">
-                                {{patient.person.name}}
-                            </li>
+                            <li ng-repeat="patient in medication.patients" class="list-group-item">{{patient.person.name}}</li>
                         </ul>
                     </div>
                 </div>
@@ -63,25 +57,23 @@
                             </h3>
                         </div>
                         <div class="panel-body">
-                            <button ui-sref="addphysnote({physicianId: physician.id}) " type="button"
+                            <button ui-sref="addmednote({medicationId: medication.id}) " type="button"
                                     class="btn btn-primary pull-right btn-rounded">
                                 Add Note
                             </button>
                         </div>
-                        <div class="panel-body">
-                            <ul class="list-group" ng-repeat="note in physician.notes">
-                                <li class="list-group-item">
+                      <div class="panel-body">
+                        <ul class="list-group" ng-repeat="note in medication.notes">
+                            <li class="list-group-item">
                                 <h5>Title: {{note.title}}</h5>
                                 <h5>Date: {{note.dateAdded}}</h5>
                                 <p>Note: {{note.text}}</p>
-                                <button type="button" ng-click="deletePhysNote(note)" class="btn btn-primary btn-small btn-rounded">
+                                <button type="button" ng-click="deleteMedNote(note)" class="btn btn-primary btn-small btn-rounded">
                                     Delete Note
                                 </button>
-                                </li>
-                            </ul>
-                        </div>
+                            </li>
+                        </ul>
+                    </div>
                     </div>
                 </div>
             </div>
-
-
