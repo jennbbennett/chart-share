@@ -132,6 +132,18 @@ angular
         templateUrl: 'views/pages/dashboard/addMedNote.html?v=' + window.app_version,
         controller: 'AddMedNoteCtrl'
       })
+      .state('person', {
+        url: '/person/:personId',
+        parent: 'dashboard',
+        templateUrl: 'views/pages/dashboard/person.html?v=' + window.app_version,
+        controller: 'PersonCtrl'
+      })
+      .state('addperson', {
+        url: '/addperson/:personId',
+        parent: 'dashboard',
+        templateUrl: 'views/pages/dashboard/addperson.html?v=' + window.app_version,
+        controller:'AddPersonCtrl'
+      })
       .state('elements', {
         url: '/form/elements',
         parent: 'dashboard',

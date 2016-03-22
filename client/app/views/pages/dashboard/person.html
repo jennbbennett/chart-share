@@ -1,0 +1,51 @@
+<pageheader pagename="person"></pageheader>
+<div class="conter-wrapper">
+    <div class="row">
+        <div class="col-md-10">
+            <div class="panel panel-success">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Person:  {{person.name}}
+                        <div class="panel-control pull-right">
+                        </div>
+                    </h3>
+                </div>
+                <div class="panel-body">
+                    <ul class="list-group">
+                        <li class="list-group-item">Date of Birth: {{person.birthDate}}</li>
+                        <li class="list-group-item">Insurance Carrier: {{person.insurance}}</li>
+                        <li class="list-group-item">Insurance Policy Info: {{person.insurancePolicy}}</li>
+                        <li class="list-group-item">Allergies: {{person.allergy}}</li>
+                        <li class="list-group-item">Chronic Conditions: {{person.condition}}</li>
+                        <li class="list-group-item">Surgeries: {{person.surgery}}</li>
+                        <li class="list-group-item">Hospitalizations: {{person.hospital}}</li>
+                    </ul>
+                    <div class="panel-btn">
+                        <button ui-sref="addperson({personId: person.id})" type="button"
+                                class="btn btn-primary pull-left btn-rounded">
+                            Update Person Info
+                        </button>
+                        <button type="button" class="btn btn-primary pull-right btn-rounded" ng-click="deletePerson(person)">
+                            Delete Person
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-10">
+                <div class="panel panel-success">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Group Members
+                            <div class="panel-control pull-right">
+                            </div>
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <ul class="list-group">
+                            <li ng-repeat="person in people" class="list-group-item">{{person.name}}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <item-notes target-type="PERSON" target-id="{{person.id}}"></item-notes>

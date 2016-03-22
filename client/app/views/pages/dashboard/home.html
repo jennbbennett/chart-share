@@ -21,7 +21,7 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr ng-repeat="member in groupData.members">
+                                <tr ng-repeat="member in groupData.members" ui-sref="person({personId: person.id})">
                                     <td>{{member.person.firstName}}</td>
                                     <td>{{member.person.lastName}}</td>
                                     <td>{{member.dateAdded}}</td>

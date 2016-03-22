@@ -24,7 +24,7 @@ angular.module('chart-share').controller('AddMedicationCtrl', ['$scope', '$http'
 
   $http.get('/service/medication/' + $scope.params.medicationId).then(function (response){
     console.log("response in addmedication", response.data);
-    $scope.medication = response.data;
+    $scope.medication = response.data.medication;
   })
 
   $scope.persons = {};

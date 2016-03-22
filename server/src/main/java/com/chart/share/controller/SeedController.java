@@ -26,7 +26,7 @@ public class SeedController {
     @RequestMapping("/service/seed")
     public SeedData seedData() {
 
-        Person person = new Person("Jenn", "Bennett",new Address("2512 Bellavista Street","","Castle Rock","CO","80109"), 15);
+        Person person = new Person("Jenn", "Bennett",new Address("2512 Bellavista Street","","Castle Rock","CO","80109"), 15, "Aug 13", "Cigna", "12345", "none","none either", "nope", "nada");
         person = personController.createPerson(person,0);
 
         UserController.jsUser user = userController.insertUser("facebook", "10153916257533903", person);
