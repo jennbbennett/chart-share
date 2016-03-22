@@ -1,9 +1,9 @@
 <div class="news-feed">
 	<div class="feed-header">Recent Activity</div>
 	<div class="feed-content">
-		<ul class="feed" ng-repeat="activity in activities">
-			<li>
-                <p>{{activity.description}}: {{activity.activityDate}}</p>
+		<ul class="feed" >
+			<li ng-repeat="activity in activities">
+                {{activity.description}}: {{activity.activityDate}}
 				<!--<a href="">{{ 'li1' | translate }}</a> <span class="feed-date">25/4/2015</span>-->
 			</li>
 			<!--<li>-->

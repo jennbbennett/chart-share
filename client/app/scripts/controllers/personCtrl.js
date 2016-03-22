@@ -20,22 +20,22 @@ angular.module('chart-share').controller('PersonCtrl', ['$scope', '$http', '$tim
   console.log("Params",$scope.params.personId);
   $scope.view = {};
 
-  $scope.person = {};
+  $scope.currentPerson = {};
 
 
   $http.get('/service/person/' + $scope.params.personId).then(function (response){
-    console.log(response.data);
-    $scope.person = response.data.person;
+    console.log("person data",response);
+    $scope.currentPerson = response.data;
     $scope.people = response.data.people;
-    console.log('person scope', $scope.person);
+    console.log('person scope', $scope.currentPerson.name);
 
   })
 
 
 
-  $scope.deletePerson = function(person){
-    console.log('I am deleting a person', person.id);
-    $http.delete('/service/person/' + person.id).then(function(response){
+  $scope.deletePerson = function(currentPerson){
+    console.log('I am deleting a person', currentPerson.id);
+    $http.delete('/service/person/' + currentPerson.id).then(function(response){
       console.log('response from person delete', response);
       $state.go('dashboard');
     })
