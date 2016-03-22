@@ -17,7 +17,7 @@
                         <li class="list-group-item">Address:
                             <p>{{physician.officeAddress.street1}}</p>
                             <p>{{physician.officeAddress.street2}}</p>
-                            <p>{{physician.officeAddress.city}}, {{physician.officeAddress.state}}</p>
+                            <p>{{physician.officeAddress.city}} {{physician.officeAddress.state}}</p>
                             <p>{{physician.officeAddress.zipCode}}</p>
                         </li>
                     </ul>
@@ -26,7 +26,7 @@
                                 class="btn btn-primary pull-left btn-rounded">
                             Update Physician Info
                         </button>
-                        <button type="button" class="btn btn-primary pull-right btn-rounded" ng-click="">
+                        <button type="button" class="btn btn-primary pull-right btn-rounded" ng-click="deletePhysician(physician)">
                             Delete Physician
                         </button>
                     </div>

@@ -29,4 +29,10 @@ public class GroupMemberController {
         return groupMember;
     }
 
+    @RequestMapping(value = "/groupmember/{groupid}/{personid}", method = RequestMethod.DELETE )
+    public Boolean deletePersonFromGroup(@PathVariable long groupid, @PathVariable long personid){
+        groupMemberRepository.delete(groupMemberRepository.findByPersonId(personid));
+        return true;
+    }
+
 }

@@ -36,6 +36,14 @@ angular.module('chart-share').controller('PhysicianCtrl', ['$scope', '$http', '$
   })
 
 
+  $scope.deletePhysician = function(physician){
+    console.log('I am deleting a physician', physician.id);
+    $http.delete('/service/physician/' + physician.id).then(function(response){
+      console.log('response from physician delete', response);
+      $state.go('dashboard');
+    })
+
+  }
 
 
 }]);

@@ -23,10 +23,11 @@ angular.module('chart-share').controller('AddMedicationCtrl', ['$scope', '$http'
   $scope.patients = [];
 
   $http.get('/service/medication/' + $scope.params.medicationId).then(function (response){
-    console.log(response.data);
+    console.log("response in addmedication", response.data);
     $scope.medication = response.data;
-  });
+  })
 
+  $scope.persons = {};
   $http.get('/service/findgroup?personId=' + $rootScope.person.id).then(function (response){
     console.log(response.data);
     $scope.members = [];
@@ -37,7 +38,7 @@ angular.module('chart-share').controller('AddMedicationCtrl', ['$scope', '$http'
     //$scope.members = response.data.members;
     console.log("My group is", $scope.members);
 
-  });
+  })
 
   $scope.createMedication = function (medication) {
     console.log("I will update a medication with this information", medication,$scope.persons);
@@ -58,7 +59,6 @@ angular.module('chart-share').controller('AddMedicationCtrl', ['$scope', '$http'
       //groupId: $scope.groupData.group.id
     }).then(function (resp) {
       console.log("response from post", resp.data);
-      $
       $state.go('medication',{'medicationId':$scope.params.medicationId});
     });
   }

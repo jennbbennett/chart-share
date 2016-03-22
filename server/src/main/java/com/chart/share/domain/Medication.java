@@ -15,7 +15,7 @@ public class Medication {
     private long rxNumber;
     private long rxQuantity;
     private String refills;
-    private Date rxDate;
+    private String rxDate;
     private long physicianId;
     private long groupId;
     private long personId;
@@ -27,7 +27,7 @@ public class Medication {
 
     }
 
-    public Medication(long id, String rxName, long rxNumber, long rxQuantity, String refills, Date rxDate, long physicianId, long groupId, long personId, long rxCui, String rxPharm, long[] patients) {
+    public Medication(long id, String rxName, long rxNumber, long rxQuantity, String refills, String rxDate, long physicianId, long groupId, long personId, long rxCui, String rxPharm, long[] patients) {
         this.id = id;
         this.rxName = rxName;
         this.rxNumber = rxNumber;
@@ -62,7 +62,7 @@ public class Medication {
         return refills;
     }
 
-    public Date getRxDate() {
+    public String getRxDate() {
         return rxDate;
     }
 

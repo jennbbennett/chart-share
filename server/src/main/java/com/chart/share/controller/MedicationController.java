@@ -42,10 +42,11 @@ public class MedicationController {
     public MedicationWithPeople getMedication(@PathVariable long id) {
         Medication returnMedication = medicationRepository.findOne(id);
         List<Person> people = new LinkedList<>();
-        for(long personId: returnMedication.getPatients()){
-            people.add(personRepository.findOne(personId));
+        if((returnMedication != null)&&(returnMedication.getPatients() != null)) {
+            for (long personId : returnMedication.getPatients()) {
+                people.add(personRepository.findOne(personId));
+            }
         }
-
         MedicationWithPeople medicationWithPeople = new MedicationWithPeople(returnMedication,people);
 
         return medicationWithPeople;
@@ -183,11 +184,19 @@ public class MedicationController {
     @RequestMapping(value = "/medication", method = RequestMethod.POST)
     public Medication createMedication(@RequestBody Medication medication) {
         long id = medication.getId();
+        String activityDescription = "Updated Medication";
         if(id == 0) {
             id = sequenceGenerator.invoke();
             medication.setId(id);
+            activityDescription = "Added Medication";
         }
-        return medicationRepository.save(medication);
+        medication = medicationRepository.save(medication);
+        activityRepository.save(new Activity(DomainType.MEDICATION,
+                medication.getId(),
+                new Date(),
+                activityDescription,
+                medication.getGroupId()));
+        return medication;
     }
 
 

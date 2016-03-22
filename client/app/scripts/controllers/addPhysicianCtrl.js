@@ -63,15 +63,9 @@ angular.module('chart-share').controller('AddPhysicianCtrl', ['$scope', '$http',
       //groupId: $scope.groupData.group.id
     }).then(function (resp) {
       console.log("response from post", resp.data);
-      $state.go('dashboard');
+      $state.go('physician', {physicianId: $scope.params.physicianId});
     });
   }
-
-
-
-
-
-
 
 
 

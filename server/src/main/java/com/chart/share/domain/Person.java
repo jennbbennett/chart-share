@@ -11,14 +11,17 @@ public class Person {
     private String firstName;
     private String lastName;
     private Address homeAddress;
+    private long groupId;
+
 
     public Person() {
     }
 
-    public Person(String firstName, String lastName, Address homeAddress) {
+    public Person(String firstName, String lastName, Address homeAddress, long groupId) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.homeAddress = homeAddress;
+        this.groupId = groupId;
     }
 
     public long getId() {
@@ -43,5 +46,9 @@ public class Person {
 
     public String getName() {
         return firstName + " " + lastName;
+    }
+
+    public long getGroupId() {
+        return groupId;
     }
 }

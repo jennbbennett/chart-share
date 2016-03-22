@@ -1,7 +1,9 @@
 package com.chart.share.controller;
 
+import com.chart.share.domain.Activity;
 import com.chart.share.domain.DomainType;
 import com.chart.share.domain.Note;
+import com.chart.share.repository.ActivityRepository;
 import com.chart.share.repository.NoteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -25,6 +27,9 @@ public class NoteController {
     @Autowired
     private NoteRepository noteRepository;
 
+    @Autowired
+    private ActivityRepository activityRepository;
+
     @RequestMapping(value = "/note/{targetType}/{targetId}", method = RequestMethod.GET)
     public List<Note> getNotesForTarget(@PathVariable DomainType targetType, @PathVariable Long targetId){
         return noteRepository.findByTargetTypeAndTargetId(targetType, targetId);
@@ -40,12 +45,22 @@ public class NoteController {
     @RequestMapping(value = "/note", method = RequestMethod.POST)
     public Note createNote(@RequestBody Note note){
         long id = note.getId();
+        String activityDescription = "Updated Note";
         if(id ==0) {
             id = sequenceGenerator.invoke();
             note.setId(id);
+            activityDescription = "Added Note";
+
         }
         note.setDateAdded(new Date());
-        return noteRepository.save(note);
+        note = noteRepository.save(note);
+        activityRepository.save(new Activity(DomainType.NOTE,
+                note.getId(),
+                new Date(),
+                activityDescription,
+                note.getGroupId()));
+        return note;
+
     }
 
     @RequestMapping(value = "note/{id}", method = RequestMethod.DELETE)

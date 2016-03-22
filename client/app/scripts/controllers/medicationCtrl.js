@@ -33,5 +33,14 @@ angular.module('chart-share').controller('MedicationCtrl', ['$scope', '$http', '
 
 
 
+  $scope.deleteMedication = function(medication){
+    console.log('I am deleting a medication', medication.id);
+    $http.delete('/service/medication/' + medication.id).then(function(response){
+      console.log('response from medication delete', response);
+      $state.go('dashboard');
+    })
+
+  }
+
 
 }]);

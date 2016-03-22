@@ -1,8 +1,7 @@
 package com.chart.share.controller;
 
-import com.chart.share.domain.CSGroup;
-import com.chart.share.domain.GroupMember;
-import com.chart.share.domain.Person;
+import com.chart.share.domain.*;
+import com.chart.share.repository.ActivityRepository;
 import com.chart.share.repository.GroupMemberRepository;
 import com.chart.share.repository.GroupRepository;
 import com.chart.share.repository.PersonRepository;
@@ -36,6 +35,9 @@ public class GroupController {
 
     @Autowired
     private GroupMemberController groupMemberController;
+
+    @Autowired
+    private ActivityRepository activityRepository;
 
     @RequestMapping(value = "/findgroup")
     public FindGroupResult findGroup(@RequestParam("personId") long personId) {
@@ -116,15 +118,24 @@ public class GroupController {
     @RequestMapping(value = "/group", method = RequestMethod.POST)
     public CSGroup createGroup(@RequestBody CSGroup group) {
         long id = group.getId();
+        String activityDescription = "Updated Group";
         if (id == 0) {
             id = sequenceGenerator.invoke();
             group.setId(id);
+            activityDescription = "Added Group";
         }
-        return groupRepository.save(group);
+        CSGroup returnGroup =  groupRepository.save(group);
+        activityRepository.save(new Activity(DomainType.GROUP,
+                returnGroup.getId(),
+                new Date(),
+                activityDescription,
+                returnGroup.getId()));
+        return returnGroup;
     }
 
     @RequestMapping(value = "/group/{id}", method = RequestMethod.DELETE)
     public boolean deleteGroup(@PathVariable Long id) {
+        groupRepository.delete(id);
         return true;
     }
 }
