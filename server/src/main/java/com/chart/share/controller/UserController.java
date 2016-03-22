@@ -26,6 +26,9 @@ public class UserController {
     @Autowired
     private PersonController personController;
 
+    @Autowired
+    private GroupController groupController;
+
     @RequestMapping(value = "/{source}/{id}", method = RequestMethod.GET)
     public jsUser getUser(@PathVariable String source, @PathVariable String id) {
 //        System.out.println("Looking for a user with an id of " + id);
@@ -57,6 +60,7 @@ public class UserController {
                 user = userRepository.save(user);
             }
         }
+        groupController.findGroup(person.getId());
         jsUser result = new jsUser(user, person);
         return result;
     }
