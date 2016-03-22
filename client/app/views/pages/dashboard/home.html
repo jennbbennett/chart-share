@@ -1,4 +1,6 @@
 <div class="conter-wrapper home-container">
+
+
     <div class="row home-row">
 
         <!--Group Panel-->
@@ -9,6 +11,7 @@
                         <div class="panel-control pull-right"></div>
                     </h3>
                 </div>
+
                 <div class="panel-body">
                     <form name="newMemberForm" role="form" ng-submit="createPerson(newMember)">
                         <div class="form-content">
@@ -26,8 +29,6 @@
                                     <td>{{member.person.lastName}}</td>
                                     <td>{{member.dateAdded}}</td>
                                 </tr>
-
-
                                 <tr ng-show="view.addPersonShow">
                                     <td><input type="text" size="10" name="firstName"
                                                ng-model="newMember.person.firstName"
@@ -43,7 +44,6 @@
                             </table>
                         </div>
                     </form>
-
                     <button ng-show="!view.addPersonShow" type="button" class="btn btn-info btn-rounded"
                             ng-click="toggleAddPersonShow()">Add a person
                     </button>
@@ -54,9 +54,9 @@
                 </div>
             </div>
         </div>
+        <!-- end person panel -->
 
         <!--Physician Panel-->
-
         <div class="col-md-6">
             <div class="panel panel-success">
                 <div class="panel-heading">
@@ -109,11 +109,15 @@
 
                 </div>
             </div>
+            <!--End Physician Panel-->
         </div>
+    </div>
+
+
+
+
 
         <!--Medication Panel-->
-
-
         <div class="row home-row">
             <div class="col-md-6">
                 <div class="panel panel-success">
@@ -176,6 +180,7 @@
                     </div>
                 </div>
             </div>
+            <!-- end medication panel -->
 
             <!--Notes Panel-->
             <div class="col-md-6">
@@ -205,6 +210,12 @@
                     </div>
                 </div>
             </div>
+            <!-- end panel 4 -->
+
+
+
+
+
         </div>
     </div>
 
