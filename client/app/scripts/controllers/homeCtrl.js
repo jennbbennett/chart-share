@@ -33,6 +33,11 @@ angular.module('chart-share').controller('HomeCtrl', ['$scope', '$http', '$timeo
       $scope.medications = response.data;
     })
 
+    $http.get('/service/note/group/' + $rootScope.group.id).then(function (response){
+      console.log("notes response", response.data);
+      $scope.notes = response.data;
+    })
+
   }
   $scope.view.addPersonShow = false;
 
@@ -102,5 +107,6 @@ angular.module('chart-share').controller('HomeCtrl', ['$scope', '$http', '$timeo
     $scope.medication = {};
     $scope.view.addMedicationShow = false;
   };
+
 
 }]);

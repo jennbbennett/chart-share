@@ -17,16 +17,18 @@ public class Note {
     @JsonFormat(pattern = "MM-dd-yyyy hh:mm aa")
     private Date dateAdded;
     private String title;
+    private long groupId;
 
     public Note() {
     }
 
-    public Note(String text, DomainType targetType, long targetId, Date dateAdded, String title) {
+    public Note(String text, DomainType targetType, long targetId, Date dateAdded, String title, long groupId) {
         this.text = text;
         this.targetType = targetType;
         this.targetId = targetId;
         this.dateAdded = dateAdded;
         this.title = title;
+        this.groupId = groupId;
     }
 
     public long getId() {
@@ -59,5 +61,9 @@ public class Note {
 
     public void setDateAdded(Date dateAdded) {
         this.dateAdded = dateAdded;
+    }
+
+    public long getGroupId() {
+        return groupId;
     }
 }

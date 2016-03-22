@@ -12,4 +12,5 @@ import java.util.List;
  */
 public interface NoteRepository extends MongoRepository<Note, Long> {
     List<Note> findByTargetTypeAndTargetId(DomainType targetType, Long targetId);
+    List<Note> findByGroupIdOrderByDateAddedDesc(Long groupId);
 }

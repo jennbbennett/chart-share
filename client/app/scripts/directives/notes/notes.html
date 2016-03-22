@@ -8,18 +8,51 @@
                 </h3>
             </div>
             <div class="panel-body">
-                <button ui-sref="addphysnote({physicianId: physician.id}) " type="button"
-                        class="btn btn-primary pull-right btn-rounded">
+                <button type="button"
+                        class="btn btn-primary pull-right btn-rounded" ng-click="toggleAddNote()">
                     Add Note
                 </button>
             </div>
+            <div class="conter-wrapper" ng-show="add.show">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="panel panel-success">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Add a Note:
+                                    <div class="panel-control pull-right">
+                                    </div>
+                                </h3>
+                            </div>
+                            <div class="panel-body">
+                                <form name="addNoteForm" role="form" ng-submit="createNote(note)">
+                                    <div class="form-group">
+                                        <label for="title">Title</label>
+                                        <input type="text" class="form-control underline" id="title" ng-model="note.title"
+                                               placeholder="Enter a title for your note">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="notetext">Note</label>
+                            <textarea type="text" class="form-control" rows="10" id="notetext" ng-model="note.text"
+                                      placeholder="Write your note">
+                        </textarea>
+                                    </div>
+                                    <button type="submit" class="btn btn-info btn-rounded">Submit</button>
+
+                                </form>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="panel-body">
-                <ul class="list-group" ng-repeat="note in physician.notes">
+                <ul class="list-group" ng-repeat="note in notes">
                     <li class="list-group-item">
                         <h5>Title: {{note.title}}</h5>
                         <h5>Date: {{note.dateAdded}}</h5>
                         <p>Note: {{note.text}}</p>
-                        <button type="button" ng-click="deletePhysNote(note)" class="btn btn-primary btn-small btn-rounded">
+                        <button type="button" ng-click="deleteNote(note)" class="btn btn-primary btn-small btn-rounded">
                             Delete Note
                         </button>
                     </li>

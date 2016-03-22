@@ -25,17 +25,12 @@ angular.module('chart-share').controller('MedicationCtrl', ['$scope', '$http', '
 
   $http.get('/service/medication/' + $scope.params.medicationId).then(function (response){
     console.log(response.data);
-    $scope.medication = response.data;
+    $scope.medication = response.data.medication;
+    $scope.people = response.data.people;
     console.log('medication scope', $scope.medication);
 
   })
 
-  $scope.medication.notes = {};
-
-
-  $http.get('/service/note/MEDICATION/' + $scope.params.medicationId).then(function (response){
-    $scope.medication.notes = response.data;
-  })
 
 
 

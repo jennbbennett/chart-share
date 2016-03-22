@@ -14,7 +14,7 @@ public class Activity {
     private ObjectId id;
     private DomainType targetType;
     private long targetId;
-    @JsonFormat(pattern = "MM-dd-yyyy hh:mm aa")
+    @JsonFormat(pattern = "MM-dd-yyyy")
     private Date activityDate;
     private String description;
     private long groupId;

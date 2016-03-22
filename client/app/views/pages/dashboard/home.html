@@ -191,25 +191,14 @@
                             <thead>
                             <tr>
                                 <th>Title</th>
-                                <th>Topic</th>
-                                <th>Patient</th>
+                                <th>Date Added</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td>Make Follow-Up Appointment</td>
-                                <td>Dentist</td>
-                                <td>Carter</td>
-                            </tr>
-                            <tr>
-                                <td>Call for refill</td>
-                                <td>Pediatrician</td>
-                                <td>Quinlan</td>
-                            </tr>
-                            <tr>
-                                <td>Check on test results</td>
-                                <td>Primary Care</td>
-                                <td>Jon</td>
+                            <tr ng-repeat="note in notes">
+                                <td>{{note.title}}</td>
+                                <td>{{note.dateAdded}}</td>
+
                             </tr>
                             </tbody>
                         </table>

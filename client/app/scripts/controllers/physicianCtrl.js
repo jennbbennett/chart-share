@@ -29,29 +29,6 @@ angular.module('chart-share').controller('PhysicianCtrl', ['$scope', '$http', '$
 
   })
 
-  $scope.physician.notes = {};
-
-
-  $http.get('/service/note/PHYSICIAN/' + $scope.params.physicianId).then(function (response){
-    $scope.physician.notes = response.data;
-  })
-
-  $scope.deletePhysNote = function(note){
-    console.log('I am deleting a physician note', note.id);
-
-    $http.delete('/service/note/' + note.id).then(function(response) {
-      console.log('response from delete', response);
-      var newNotes = [];
-      $scope.physician.notes.map(function(oldnote){
-        if(oldnote.id != note.id){
-          newNotes.push(oldnote);
-        }
-      });
-      $scope.physician.notes = newNotes;
-    })
-
-  }
-
   $scope.physician.patients = {};
 
   $http.get('/service/physician/patients/' + $scope.params.physicianId).then(function (response){

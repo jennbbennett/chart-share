@@ -95,11 +95,19 @@ public class PhysicianController {
     @RequestMapping(value = "/physician", method = RequestMethod.PUT)
     public Physician updatePhysician(@RequestBody PhysicianSaveData physicianSaveData) {
         long id = physicianSaveData.getId();
+        String activityDescription = "Updated Physician";
         if (id == 0) {
             id = sequenceGenerator.invoke();
             physicianSaveData.setId(id);
+            activityDescription = "Added Physician";
         }
         Physician physician = physicianRepository.save(physicianSaveData);
+        activityRepository.save(new Activity(DomainType.PHYSICIAN,
+                physician.getId(),
+                new Date(),
+                activityDescription,
+                physician.getGroupId()));
+
         long[] patients = physicianSaveData.getPatients();
 //        patientRepository.deleteByPhysicianId(physician.getId());
         List<Patient> existingPatients = patientRepository.findByPhysicianId(physician.getId());

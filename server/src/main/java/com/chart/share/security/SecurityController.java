@@ -1,7 +1,11 @@
 package com.chart.share.security;
 
+import com.chart.share.domain.CSGroup;
+import com.chart.share.domain.GroupMember;
 import com.chart.share.domain.Person;
 import com.chart.share.domain.User;
+import com.chart.share.repository.GroupMemberRepository;
+import com.chart.share.repository.GroupRepository;
 import com.chart.share.repository.PersonRepository;
 import com.chart.share.repository.UserRepository;
 import org.slf4j.Logger;
@@ -28,6 +32,12 @@ public class SecurityController {
     private UserRepository userRepository;
 
     @Autowired
+    private GroupRepository groupRepository;
+
+    @Autowired
+    private GroupMemberRepository groupMemberRepository;
+
+    @Autowired
     private PersonRepository personRepository;
 
     @RequestMapping("/user")
@@ -42,6 +52,7 @@ public class SecurityController {
             log.warn("Principal is not null");
             isFound = true;
             principalName = principal.getName();
+
             map.put("principal",principal);
             source = "facebook";
 
@@ -66,6 +77,13 @@ public class SecurityController {
                 person = personRepository.findOne(user.getPersonId());
                 if (person != null) {
                     map.put("person",person);
+                    GroupMember groupMember = groupMemberRepository.findByPersonId(person.getId());
+                    if(groupMember != null) {
+                        CSGroup group = groupRepository.findOne(groupMember.getGroupId());
+                        if (group != null) {
+                            map.put("group", group);
+                        }
+                    }
                 }
             }
         }

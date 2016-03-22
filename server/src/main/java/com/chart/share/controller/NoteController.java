@@ -54,5 +54,10 @@ public class NoteController {
         return true;
     }
 
+    @RequestMapping(value = "note/group/{groupId}", method = RequestMethod.GET)
+    public List<Note> getNotesForGroup(@PathVariable long groupId){
+        return noteRepository.findByGroupIdOrderByDateAddedDesc(groupId);
+    }
+
 
 }

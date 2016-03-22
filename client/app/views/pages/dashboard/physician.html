@@ -52,37 +52,7 @@
                     </div>
                 </div>
             </div>
-            <!--<item-notes target-type="PHYSICIAN" target-id="17"></item-notes>-->
+            <item-notes target-type="PHYSICIAN" target-id="{{physician.id}}"></item-notes>
 
-            <div class="row">
-                <div class="col-md-10">
-                    <div class="panel panel-success">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">Notes
-                                <div class="panel-control pull-right">
-                                </div>
-                            </h3>
-                        </div>
-                        <div class="panel-body">
-                            <button ui-sref="addphysnote({physicianId: physician.id}) " type="button"
-                                    class="btn btn-primary pull-right btn-rounded">
-                                Add Note
-                            </button>
-                        </div>
-                        <div class="panel-body">
-                            <ul class="list-group" ng-repeat="note in physician.notes">
-                                <li class="list-group-item">
-                                <h5>Title: {{note.title}}</h5>
-                                <h5>Date: {{note.dateAdded}}</h5>
-                                <p>Note: {{note.text}}</p>
-                                <button type="button" ng-click="deletePhysNote(note)" class="btn btn-primary btn-small btn-rounded">
-                                    Delete Note
-                                </button>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
 
