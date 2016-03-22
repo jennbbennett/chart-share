@@ -63,6 +63,8 @@ public class GroupController {
         return new FindGroupResult(group, members);
     }
 
+
+
     class GroupMemberResult {
         Person person;
         @JsonFormat(pattern = "MM-dd-yyyy")

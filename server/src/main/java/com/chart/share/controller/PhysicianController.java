@@ -1,13 +1,7 @@
 package com.chart.share.controller;
 
-import com.chart.share.domain.GroupMember;
-import com.chart.share.domain.Patient;
-import com.chart.share.domain.Person;
-import com.chart.share.domain.Physician;
-import com.chart.share.repository.GroupMemberRepository;
-import com.chart.share.repository.PatientRepository;
-import com.chart.share.repository.PersonRepository;
-import com.chart.share.repository.PhysicianRepository;
+import com.chart.share.domain.*;
+import com.chart.share.repository.*;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -41,21 +35,25 @@ public class PhysicianController {
     @Autowired
     private PatientRepository patientRepository;
 
+    @Autowired
+    private ActivityRepository activityRepository;
+
+
     @RequestMapping(value = "/physician/{id}", method = RequestMethod.GET)
-    public Physician getPhysician(@PathVariable long id){
+    public Physician getPhysician(@PathVariable long id) {
         Physician returnPhysician;
         returnPhysician = physicianRepository.findOne(id);
         return returnPhysician;
     }
 
     @RequestMapping(value = "/physician/patients/{physicianId}", method = RequestMethod.GET)
-    public List<PatientResult> getPatientsByPhysicianId(@PathVariable long physicianId){
+    public List<PatientResult> getPatientsByPhysicianId(@PathVariable long physicianId) {
         List<Patient> patients;
         List<PatientResult> results = new LinkedList<>();
 
-         patients = patientRepository.findByPhysicianId(physicianId);
+        patients = patientRepository.findByPhysicianId(physicianId);
 
-        for(Patient patient : patients){
+        for (Patient patient : patients) {
             Person person = personRepository.findOne(patient.getPersonId());
             results.add(new PatientResult(person, patient.getDateAdded()));
         }
@@ -82,14 +80,12 @@ public class PhysicianController {
     }
 
 
-
-
-//    trying to find all physicians linked to group
+    //    trying to find all physicians linked to group
     @RequestMapping(value = "/physician", method = RequestMethod.GET)
-    public  List<Physician> getGroupPhysicians(@RequestParam long personId){
+    public List<Physician> getGroupPhysicians(@RequestParam long personId) {
         List<Physician> groupPhysician = null;
         GroupMember groupMember = groupMemberRepository.findByPersonId(personId);
-        if(groupMember != null){
+        if (groupMember != null) {
             long groupId = groupMember.getGroupId();
             groupPhysician = physicianRepository.findByGroupId(groupId);
         }
@@ -97,41 +93,41 @@ public class PhysicianController {
     }
 
     @RequestMapping(value = "/physician", method = RequestMethod.PUT)
-    public Physician updatePhysician(@RequestBody PhysicianSaveData physicianSaveData){
+    public Physician updatePhysician(@RequestBody PhysicianSaveData physicianSaveData) {
         long id = physicianSaveData.getId();
-        if(id ==0) {
+        if (id == 0) {
             id = sequenceGenerator.invoke();
             physicianSaveData.setId(id);
         }
-        Physician physician =  physicianRepository.save(physicianSaveData);
+        Physician physician = physicianRepository.save(physicianSaveData);
         long[] patients = physicianSaveData.getPatients();
 //        patientRepository.deleteByPhysicianId(physician.getId());
         List<Patient> existingPatients = patientRepository.findByPhysicianId(physician.getId());
-        Map<Long,Patient> ePatientMap = new HashMap<>();
+        Map<Long, Patient> ePatientMap = new HashMap<>();
 
-        for(Patient patient: existingPatients){
-            ePatientMap.put(patient.getPersonId(),patient);
+        for (Patient patient : existingPatients) {
+            ePatientMap.put(patient.getPersonId(), patient);
         }
 
         Set<Long> toAdd = new HashSet<Long>();
         Set<Long> toDelete = new HashSet<Long>();
-        for(Patient patient: ePatientMap.values()){
+        for (Patient patient : ePatientMap.values()) {
             toDelete.add(patient.getPersonId());
         }
 
-        for(long pid: patients){
-            if(ePatientMap.get(pid) != null){
+        for (long pid : patients) {
+            if (ePatientMap.get(pid) != null) {
                 toDelete.remove(pid);
             } else {
                 toAdd.add(pid);
             }
         }
 
-        for(long pid: toAdd){
+        for (long pid : toAdd) {
             patientRepository.save(new Patient(physician.getId(), pid, new Date()));
         }
 
-        for(long pid: toDelete){
+        for (long pid : toDelete) {
             patientRepository.deleteByPersonId(pid);
         }
 
@@ -139,23 +135,31 @@ public class PhysicianController {
     }
 
     @RequestMapping(value = "/physician", method = RequestMethod.POST)
-    public Physician createPhysician(@RequestBody Physician physician){
+    public Physician createPhysician(@RequestBody Physician physician) {
         long id = physician.getId();
-        if(id ==0) {
+        String activityDescription = "Updated Physician";
+        if (id == 0) {
             id = sequenceGenerator.invoke();
             physician.setId(id);
+            activityDescription = "Added Physician";
         }
-        return physicianRepository.save(physician);
+        Physician returnValue = physicianRepository.save(physician);
+        activityRepository.save(new Activity(DomainType.PHYSICIAN,
+                returnValue.getId(),
+                new Date(),
+                activityDescription,
+                returnValue.getGroupId()));
+        return returnValue;
     }
 
     @RequestMapping(value = "physician/{id}", method = RequestMethod.DELETE)
-    public Boolean deletePhysician(@PathVariable long id){
+    public Boolean deletePhysician(@PathVariable long id) {
         physicianRepository.delete(id);
         return true;
     }
 }
 
- class PhysicianSaveData extends Physician {
+class PhysicianSaveData extends Physician {
 
     long[] patients;
 
@@ -163,7 +167,7 @@ public class PhysicianController {
         super();
     }
 
-     public long[] getPatients() {
-         return patients;
-     }
- }
+    public long[] getPatients() {
+        return patients;
+    }
+}

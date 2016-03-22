@@ -11,6 +11,7 @@ import java.util.List;
  */
 public interface PatientRepository extends MongoRepository<Patient, ObjectId> {
     List<Patient> findByPhysicianId(long physicianId);
+//    List<Patient> findByMedicationId(long medicationId);
     void deleteByPersonId(long personId);
 
 }

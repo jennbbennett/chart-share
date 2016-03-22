@@ -37,13 +37,18 @@
                                    placeholder="Enter date started">
                         </div>
                         <div class="form-group">
-                            <label for="patients">Patients</label>
-                            <select multiple ng-options="member as member.person.name for member in members track by member.person.id" ng-model="medication.patients" id="patients"></select>
+                            <label for="rxPharm">Pharmacy</label>
+                            <input type="text" class="form-control underline" id="rxPharm" ng-model="medication.rxPharm"
+                                   placeholder="Enter pharmacy name">
                         </div>
                         <div class="form-group">
-                            <label for="physicians">Physician</label>
-                            <select  ng-options="physician as physician.lastName for physician in physicians track by physician.id" ng-model="medication.physicianId" id="physicians"></select>
+                            <label for="patients">Patients</label>
+                            <select multiple ng-options="member.id as member.name for member in members" ng-model="medication.patients" id="patients"></select>
                         </div>
+                        <!--<div class="form-group">-->
+                            <!--<label for="physicians">Physician</label>-->
+                            <!--<select  ng-options="physician as physician.lastName for physician in physicians track by physician.id" ng-model="medication.physicianId" id="physicians"></select>-->
+                        <!--</div>-->
 
                         <button type="submit" class="btn btn-info btn-rounded">Submit</button>
 

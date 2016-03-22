@@ -25,30 +25,22 @@ angular.module('chart-share').controller('AddMedicationCtrl', ['$scope', '$http'
   $http.get('/service/medication/' + $scope.params.medicationId).then(function (response){
     console.log(response.data);
     $scope.medication = response.data;
-    $scope.medication.patients = [];
-  })
+  });
 
-  $scope.medication.patients = {};
-  $http.get('/service/physician/patients/' + $scope.params.groupId).then(function (response){
-    $scope.medication.patients = response.data;
-  })
-
-  $scope.persons ={};
   $http.get('/service/findgroup?personId=' + $rootScope.person.id).then(function (response){
     console.log(response.data);
-    $scope.members = response.data.members;
+    $scope.members = [];
+
+    response.data.members.map(function(member){
+      $scope.members.push(member.person);
+    });
+    //$scope.members = response.data.members;
     console.log("My group is", $scope.members);
 
-  })
+  });
 
   $scope.createMedication = function (medication) {
-    console.log("I will update a medication with this information", medication);
-
-    var patients = [];
-    medication.patients.map(function(patient){
-      console.log("Adding person to patient list", patient.person);
-      patients.push(patient.person.id);
-    })
+    console.log("I will update a medication with this information", medication,$scope.persons);
 
     $http.put('/service/medication', {
       id: $scope.params.medicationId,
@@ -60,12 +52,14 @@ angular.module('chart-share').controller('AddMedicationCtrl', ['$scope', '$http'
       groupId : $scope.medication.groupId,
       physicianId: $scope.medication.physicianId,
       personId: $scope.medication.personId,
-      patients: patients,
-      rxCui:  medication.rxCui
+      rxCui:  medication.rxCui,
+      rxPharm: medication.rxPharm,
+      patients: medication.patients
       //groupId: $scope.groupData.group.id
     }).then(function (resp) {
       console.log("response from post", resp.data);
-      $state.go('dashboard');
+      $
+      $state.go('medication',{'medicationId':$scope.params.medicationId});
     });
   }
 

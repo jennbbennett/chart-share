@@ -37,11 +37,17 @@ angular.module('chart-share').controller('PhysicianCtrl', ['$scope', '$http', '$
   })
 
   $scope.deletePhysNote = function(note){
-    console.log('I am deleting a physician note', $scope.physician.notes.obj.id);
+    console.log('I am deleting a physician note', note.id);
 
-    $http.delete('/service/note/' + $scope.physician.notes.id).then(function(response) {
+    $http.delete('/service/note/' + note.id).then(function(response) {
       console.log('response from delete', response);
-      $scope.physician.notes = response.data;
+      var newNotes = [];
+      $scope.physician.notes.map(function(oldnote){
+        if(oldnote.id != note.id){
+          newNotes.push(oldnote);
+        }
+      });
+      $scope.physician.notes = newNotes;
     })
 
   }

@@ -6,9 +6,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by jenn on 3/16/16.
@@ -38,43 +36,34 @@ public class MedicationController {
 
     @RequestMapping(value = "/medication/{id}", method = RequestMethod.GET)
     public Medication getMedication(@PathVariable long id) {
-        Medication returnMedication;
-        returnMedication = medicationRepository.findOne(id);
+        Medication returnMedication = medicationRepository.findOne(id);
+//        Person[] patientPersons = new Person[medication.getPatients().length];
+//        for(int i = 0; i < patientPersons.length; i++){
+//            patientPersons[i] = personRepository.findOne(medication.getPatients()[i]);
+//        }
+//        returnMedication = new MedicationSaveData(medication,patientPersons);
         return returnMedication;
     }
 
-//    @RequestMapping(value = "/medication/patients/{physicianId}", method = RequestMethod.GET)
-//    public List<PatientResult> getPatientsByPhysicianId(@PathVariable long physicianId){
-//        List<Patient> patients;
-//        List<PatientResult> results = new LinkedList<>();
+
+//    class PatientResult {
+//        Person person;
+//        @JsonFormat(pattern = "MM-dd-yyyy")
+//        Date dateAdded;
 //
-//        patients = patientRepository.findByPhysicianId(physicianId);
-//
-//        for(Patient patient : patients){
-//            Person person = personRepository.findOne(patient.getPersonId());
-//            results.add(new PatientResult(person, patient.getDateAdded()));
+//        public PatientResult(Person person, Date dateAdded) {
+//            this.person = person;
+//            this.dateAdded = dateAdded;
 //        }
-//        return results;
+//
+//        public Person getPerson() {
+//            return person;
+//        }
+//
+//        public Date getDateAdded() {
+//            return dateAdded;
+//        }
 //    }
-
-    class PatientResult {
-        Person person;
-        @JsonFormat(pattern = "MM-dd-yyyy")
-        Date dateAdded;
-
-        public PatientResult(Person person, Date dateAdded) {
-            this.person = person;
-            this.dateAdded = dateAdded;
-        }
-
-        public Person getPerson() {
-            return person;
-        }
-
-        public Date getDateAdded() {
-            return dateAdded;
-        }
-    }
 
 
     @RequestMapping(value = "/medication", method = RequestMethod.GET)
@@ -161,6 +150,49 @@ public class MedicationController {
         }
     }
 
+    @RequestMapping(value = "/medication", method = RequestMethod.PUT)
+    public Medication updateMedication(@RequestBody Medication medication){
+        long id = medication.getId();
+        if(id ==0) {
+            id = sequenceGenerator.invoke();
+            medication.setId(id);
+        }
+
+        medication =  medicationRepository.save(medication);
+//        long[] patients = medicationSaveData.getPatients();
+//        long [] physicians = medicationSaveData.getPhysicians();
+////        patientRepository.deleteByPhysicianId(physician.getId());
+//        List<Patient> existingPatients = patientRepository.findByMedicationId(medication.getId());
+//        List<Physician> existingPhysicians = physicianRepository.findByGroupId(csGroup.getId());
+//
+//        for(Patient patient: existingPatients){
+//            ePatientMap.put(patient.getPersonId(),patient);
+//        }
+
+//        Set<Long> toAdd = new HashSet<Long>();
+//        Set<Long> toDelete = new HashSet<Long>();
+//        for(Patient patient: ePatientMap.values()){
+//            toDelete.add(patient.getPersonId());
+//        }
+//
+//        for(long pid: patients){
+//            if(ePatientMap.get(pid) != null){
+//                toDelete.remove(pid);
+//            } else {
+//                toAdd.add(pid);
+//            }
+//        }
+//
+//        for(long pid: toAdd){
+//            patientRepository.save(new Patient(medication.getId(), pid, new Date()));
+//        }
+
+//        for(long pid: toDelete){
+//            patientRepository.deleteByPersonId(pid);
+//        }
+
+        return medication;
+    }
 
 
     @RequestMapping(value = "/medication", method = RequestMethod.POST)
@@ -178,5 +210,28 @@ public class MedicationController {
     public Boolean deleteMedication(@PathVariable long id){
         medicationRepository.delete(id);
         return true;
+    }
+}
+
+class MedicationSaveData  {
+
+    Medication medication;
+    Person[] patientPersons;
+    long [] physicians;
+
+    public MedicationSaveData() {
+    }
+
+    public MedicationSaveData(Medication medication, Person[] patientPersons) {
+        this.medication = medication;
+        this.patientPersons = patientPersons;
+    }
+
+    public Medication getMedication() {
+        return medication;
+    }
+
+    public Person[] getPatientPersons() {
+        return patientPersons;
     }
 }

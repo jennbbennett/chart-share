@@ -15,6 +15,7 @@ public class Patient {
     long personId;
     Date dateAdded;
 
+
     public Patient(long physicianId, long personId, Date dateAdded) {
         this.physicianId = physicianId;
         this.personId = personId;
@@ -33,5 +34,5 @@ public class Patient {
         return dateAdded;
     }
 
-    }
+}
 
