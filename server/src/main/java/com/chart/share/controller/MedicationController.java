@@ -183,11 +183,11 @@ public class MedicationController {
     @RequestMapping(value = "/medication", method = RequestMethod.POST)
     public Medication createMedication(@RequestBody Medication medication) {
         long id = medication.getId();
-        String activityDescription = "Updated Medication";
+        String activityDescription = "Updated Medication " + medication.getRxName();
         if(id == 0) {
             id = sequenceGenerator.invoke();
             medication.setId(id);
-            activityDescription = "Added Medication";
+            activityDescription = "Added Medication " + medication.getRxName();
         }
         medication = medicationRepository.save(medication);
         activityRepository.save(new Activity(DomainType.MEDICATION,

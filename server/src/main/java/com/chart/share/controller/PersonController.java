@@ -66,11 +66,11 @@ public class PersonController {
     @RequestMapping(value = "/person", method = RequestMethod.POST)
     public Person createPerson(@RequestBody Person person, @RequestParam(defaultValue = "0") long groupId) {
         long id = person.getId();
-        String activityDescription = "Updated Person";
+        String activityDescription = "Updated Person " + person.getName();
         if (id == 0) {
             id = sequenceGenerator.invoke();
             person.setId(id);
-            activityDescription = "Added Person";
+            activityDescription = "Added Person " + person.getName();
         }
         person = personRepository.save(person);
         if(groupId > 0){

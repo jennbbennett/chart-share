@@ -145,11 +145,11 @@ public class PhysicianController {
     @RequestMapping(value = "/physician", method = RequestMethod.POST)
     public Physician createPhysician(@RequestBody Physician physician) {
         long id = physician.getId();
-        String activityDescription = "Updated Physician";
+        String activityDescription = "Updated Physician " + physician.getName();
         if (id == 0) {
             id = sequenceGenerator.invoke();
             physician.setId(id);
-            activityDescription = "Added Physician";
+            activityDescription = "Added Physician "+ physician.getName() ;
         }
         Physician returnValue = physicianRepository.save(physician);
         activityRepository.save(new Activity(DomainType.PHYSICIAN,

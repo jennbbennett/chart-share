@@ -24,9 +24,12 @@ public class ActivityController {
 
     @RequestMapping(value= "/activity/group/{groupId}", method = RequestMethod.GET)
     public List<Activity> getActivityForGroup(@PathVariable long groupId){
-        return activityRepository.findByGroupIdOrderByActivityDateDesc(groupId);
+        List activityList = activityRepository.findByGroupIdOrderByActivityDateDesc(groupId);
+        if(activityList.size() > 5){
+            activityList = activityList.subList(0,4);
+        }
+        return activityList;
     }
-
 
 
 }

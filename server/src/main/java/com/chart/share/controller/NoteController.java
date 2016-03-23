@@ -45,11 +45,11 @@ public class NoteController {
     @RequestMapping(value = "/note", method = RequestMethod.POST)
     public Note createNote(@RequestBody Note note){
         long id = note.getId();
-        String activityDescription = "Updated Note";
+        String activityDescription = "Updated Note " + note.getTitle();
         if(id ==0) {
             id = sequenceGenerator.invoke();
             note.setId(id);
-            activityDescription = "Added Note";
+            activityDescription = "Added Note " + note.getTitle() ;
 
         }
         note.setDateAdded(new Date());
@@ -71,7 +71,11 @@ public class NoteController {
 
     @RequestMapping(value = "note/group/{groupId}", method = RequestMethod.GET)
     public List<Note> getNotesForGroup(@PathVariable long groupId){
-        return noteRepository.findByGroupIdOrderByDateAddedDesc(groupId);
+       List noteList=  noteRepository.findByGroupIdOrderByDateAddedDesc(groupId);
+        if(noteList.size() > 5){
+            noteList = noteList.subList(0,4);
+        }
+        return  noteList;
     }
 
 
