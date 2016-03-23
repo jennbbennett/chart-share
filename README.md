@@ -14,11 +14,8 @@ http://chart-share.cfapps.io
 
 4. Run `gradle build`  and then `gradle bootRun` to start the development server. 
 
-5. Run `gulp build` and then `gulp qwatch` to start the client server.
+5. Run `gulp build` and then `gulp qwatch` to start and monitor the client server.
 
-## Build & development
-
-Run `grunt build` for building and `grunt serve` for preview.
 
 
 
