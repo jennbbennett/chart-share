@@ -96,7 +96,8 @@ angular.module('chart-share').controller('HomeCtrl', ['$scope', '$http', '$timeo
       rxName: medication.rxName,
       refills: medication.refills,
       groupId: $scope.groupData.group.id,
-      physicianId: medication.physicianId.id
+      physicianId: medication.physicianId.id,
+      personId: medication.personId
     }).then(function (resp) {
       console.log("response from post", resp.data);
       $http.get('/service/medication?personId=' + $rootScope.person.id).then(function (response){

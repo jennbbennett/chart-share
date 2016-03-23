@@ -50,16 +50,16 @@ angular.module('chart-share').controller('AddMedicationCtrl', ['$scope', '$http'
       rxQuantity: medication.rxQuantity,
       refills: medication.refills,
       rxDate: medication.rxDate,
-      groupId : $scope.medication.groupId,
+      //groupId : $scope.medication.groupId,
       physicianId: $scope.medication.physicianId,
       personId: $scope.medication.personId,
       rxCui:  medication.rxCui,
       rxPharm: medication.rxPharm,
-      patients: medication.patients
-      //groupId: $scope.groupData.group.id
+      patients: medication.patients,
+      groupId: $rootScope.group.id
     }).then(function (resp) {
       console.log("response from post", resp.data);
-      $state.go('medication',{'medicationId':$scope.params.medicationId});
+      $state.go('medication',{'medicationId':resp.data.id});
     });
   }
 

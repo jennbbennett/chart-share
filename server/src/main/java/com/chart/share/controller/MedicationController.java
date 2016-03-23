@@ -39,17 +39,15 @@ public class MedicationController {
     private ActivityRepository activityRepository;
 
     @RequestMapping(value = "/medication/{id}", method = RequestMethod.GET)
-    public MedicationWithPeople getMedication(@PathVariable long id) {
+    public MedicationWithPerson getMedication(@PathVariable long id) {
         Medication returnMedication = medicationRepository.findOne(id);
-        List<Person> people = new LinkedList<>();
-        if((returnMedication != null)&&(returnMedication.getPatients() != null)) {
-            for (long personId : returnMedication.getPatients()) {
-                people.add(personRepository.findOne(personId));
-            }
+        Person person = null;
+        if((returnMedication != null)&&(returnMedication.getPersonId() > 0)) {
+                person = personRepository.findOne(returnMedication.getPersonId());
         }
-        MedicationWithPeople medicationWithPeople = new MedicationWithPeople(returnMedication,people);
+        MedicationWithPerson medicationWithPerson = new MedicationWithPerson(returnMedication,person);
 
-        return medicationWithPeople;
+        return medicationWithPerson;
     }
 
 
@@ -82,21 +80,21 @@ public class MedicationController {
         return results;
     }
 
-    class MedicationWithPeople {
+    class MedicationWithPerson {
         Medication medication;
-        List<Person> people;
+        Person person;
 
-        public MedicationWithPeople(Medication medication, List<Person> people) {
+        public MedicationWithPerson(Medication medication, Person person) {
             this.medication = medication;
-            this.people = people;
+            this.person = person;
         }
 
         public Medication getMedication() {
             return medication;
         }
 
-        public List<Person> getPeople() {
-            return people;
+        public Person getPerson() {
+            return person;
         }
     }
 
@@ -159,25 +157,26 @@ public class MedicationController {
 
     @RequestMapping(value = "/medication", method = RequestMethod.PUT)
     public Medication updateMedication(@RequestBody Medication medication){
-        long id = medication.getId();
-        String activityDescription = "Updated Medication";
-
-        if(id ==0) {
-            id = sequenceGenerator.invoke();
-            medication.setId(id);
-            activityDescription = "Added Medication";
-
-        }
-
-        medication =  medicationRepository.save(medication);
-        activityRepository.save(new Activity(DomainType.MEDICATION,
-                medication.getId(),
-                new Date(),
-                activityDescription,
-                medication.getGroupId()));
-
-
-        return medication;
+        return createMedication(medication);
+//        long id = medication.getId();
+//        String activityDescription = "Updated Medication";
+//
+//        if(id ==0) {
+//            id = sequenceGenerator.invoke();
+//            medication.setId(id);
+//            activityDescription = "Added Medication";
+//
+//        }
+//
+//        medication =  medicationRepository.save(medication);
+//        activityRepository.save(new Activity(DomainType.MEDICATION,
+//                medication.getId(),
+//                new Date(),
+//                activityDescription,
+//                medication.getGroupId()));
+//
+//
+//        return medication;
     }
 
 
@@ -205,6 +204,8 @@ public class MedicationController {
         medicationRepository.delete(id);
         return true;
     }
+
+
 }
 
 class MedicationSaveData  {
@@ -229,3 +230,4 @@ class MedicationSaveData  {
         return patientPersons;
     }
 }
+

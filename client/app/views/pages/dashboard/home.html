@@ -149,13 +149,11 @@
                                 <td><input type="text" size="10" name="rxName"
                                            ng-model="medication.rxName"
                                            placeholder=" {{ 'rx Name' | translate }}"></td>
-                                <td><input type="text" size=10 name="lastName"
-                                           ng-model="medication.firstName"
-                                           placeholder="{{ 'Patient' | translate }}"></td>
                                 <td>
-                                    <!--<input type="text" size=10 name="physician" id="physician"-->
-                                           <!--ng-model="medication.physician"-->
-                                           <!--placeholder="{{ 'Physician' | translate }}">-->
+                                    <select  ng-options="member.person.id as member.person.name for member in groupData.members" ng-model="medication.personId">
+                                    </select>
+                                </td>
+                                <td>
                                     <select  ng-options="physician as physician.lastName for physician in physicians track by physician.id" ng-model="medication.physicianId">
                                     </select>
                                 </td>

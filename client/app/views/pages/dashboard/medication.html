@@ -13,8 +13,8 @@
                     <ul class="list-group">
                         <li class="list-group-item">Medication Name: {{medication.rxName}}</li>
                         <li class="list-group-item">Prescription Number: {{medication.rxNumber}}</li>
-                        <li class="list-group-item">Quantity in Medication: {{medication.quantity}}</li>
-                        <li class="list-group-item">Prescription Date: {{medication.rxDate}}</li>
+                        <li class="list-group-item">Quantity in Medication: {{medication.rxQuantity}}</li>
+                        <li class="list-group-item">Prescription Date: {{medication.rxDate |  date:'MM/dd/yyyy'}}</li>
                         <li class="list-group-item">Refills: {{medication.refills}}</li>
                     </ul>
                     <div class="panel-btn">
@@ -41,7 +41,7 @@
                     </div>
                     <div class="panel-body">
                         <ul class="list-group">
-                            <li ng-repeat="person in people" class="list-group-item">{{person.name}}</li>
+                            <li class="list-group-item">{{medication.person.name}}</li>
                         </ul>
                     </div>
                 </div>

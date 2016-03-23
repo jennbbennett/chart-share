@@ -21,6 +21,7 @@ angular.module('chart-share').controller('AddPhysicianCtrl', ['$scope', '$http',
   $scope.view = {};
   $scope.physician = {};
   $scope.patients = [];
+  $scope.physician.patients = [];
 
   $http.get('/service/physician/' + $scope.params.physicianId).then(function (response){
     console.log(response.data);
@@ -45,10 +46,12 @@ angular.module('chart-share').controller('AddPhysicianCtrl', ['$scope', '$http',
     console.log("I will update a physician with this information", physician);
 
     var patients = [];
-    physician.patients.map(function(patient){
-      console.log("Adding person to patient list", patient.person);
-      patients.push(patient.person.id);
-    })
+    if((physician.patients !== undefined) && (Array.isArray(physician.patients))) {
+      physician.patients.map(function (patient) {
+        console.log("Adding person to patient list", patient.person);
+        patients.push(patient.person.id);
+      })
+    }
 
     $http.put('/service/physician', {
       id: $scope.params.physicianId,
@@ -57,13 +60,12 @@ angular.module('chart-share').controller('AddPhysicianCtrl', ['$scope', '$http',
       practice: physician.practice,
       email: physician.email,
       phoneNumber: physician.phoneNumber,
-      groupId : $scope.physician.groupId,
       officeAddress: physician.officeAddress,
-      patients: patients
-      //groupId: $scope.groupData.group.id
+      patients: patients,
+      groupId: $rootScope.group.id
     }).then(function (resp) {
       console.log("response from post", resp.data);
-      $state.go('physician', {physicianId: $scope.params.physicianId});
+      $state.go('physician', {physicianId: resp.data.id});
     });
   }
 

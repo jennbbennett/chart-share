@@ -31,6 +31,7 @@ public class PersonController {
     @Autowired
     private ActivityRepository activityRepository;
 
+
     @RequestMapping(value = "/person/{id}", method = RequestMethod.GET)
     public Person getPerson(@PathVariable long id) {
         Person returnPerson;
@@ -40,23 +41,24 @@ public class PersonController {
 
     @RequestMapping(value = "/person", method = RequestMethod.PUT)
     public Person updatePerson(@RequestBody Person person){
-        long id = person.getId();
-        String activityDescription = "Updated Person";
-
-        if(id ==0) {
-            id = sequenceGenerator.invoke();
-            person.setId(id);
-            activityDescription = "Added Person";
-
-        }
-
-        person =  personRepository.save(person);
-        activityRepository.save(new Activity(DomainType.PERSON,
-                person.getId(),
-                new Date(),
-                activityDescription,
-                person.getGroupId()));
-        return person;
+        return createPerson(person,person.getGroupId());
+//        long id = person.getId();
+//        String activityDescription = "Updated Person";
+//
+//        if(id ==0) {
+//            id = sequenceGenerator.invoke();
+//            person.setId(id);
+//            activityDescription = "Added Person";
+//
+//        }
+//
+//        person =  personRepository.save(person);
+//        activityRepository.save(new Activity(DomainType.PERSON,
+//                person.getId(),
+//                new Date(),
+//                activityDescription,
+//                person.getGroupId()));
+//        return person;
     }
 
 

@@ -11,7 +11,7 @@
                 </div>
                 <div class="panel-body">
                     <ul class="list-group">
-                        <li class="list-group-item">Date of Birth: {{currentPerson.birthDate}}</li>
+                        <li class="list-group-item">Date of Birth: {{currentPerson.birthDate |  date:'MM/dd/yyyy'}}</li>
                         <li class="list-group-item">Insurance Carrier: {{currentPerson.insurance}}</li>
                         <li class="list-group-item">Insurance Policy Info: {{currentPerson.insurancePolicy}}</li>
                         <li class="list-group-item">Allergies: {{currentPerson.allergy}}</li>
@@ -24,9 +24,9 @@
                                 class="btn btn-primary pull-left btn-rounded">
                             Update Person Info
                         </button>
-                        <button type="button" class="btn btn-primary pull-right btn-rounded" ng-click="deletePerson(currentPerson)">
-                            Delete Person
-                        </button>
+                        <!--<button type="button" class="btn btn-primary pull-right btn-rounded" ng-click="deletePerson(currentPerson)">-->
+                            <!--Delete Person-->
+                        <!--</button>-->
                     </div>
                 </div>
             </div>

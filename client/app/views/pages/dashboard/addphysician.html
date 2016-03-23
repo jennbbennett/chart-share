@@ -23,6 +23,11 @@
                                    placeholder="Enter last name">
                         </div>
                         <div class="form-group">
+                            <label for="practice">Practice</label>
+                            <input type="text" class="form-control underline" id="practice" name="practice" ng-model="physician.practice"
+                                   placeholder="Enter practice type">
+                        </div>
+                        <div class="form-group">
                             <label for="email">Email Address</label>
                             <input type="email" class="form-control underline" id="email" ng-model="physician.email"
                                    placeholder="Enter email">
@@ -67,7 +72,7 @@
 
 
                         <button type="submit" class="btn btn-info btn-rounded">Submit</button>
-                        <button type="button" class="btn btn-info btn-rounded pull-right" ui-sref="physician({physicianId: PHYSICIAN.id})">Cancel</button>
+                        <button type="button" class="btn btn-info btn-rounded pull-right" ui-sref="physician({physicianId: physician.id})">Cancel</button>
 
                     </form>
                 </div>

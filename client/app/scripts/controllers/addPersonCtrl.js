@@ -39,10 +39,11 @@ angular.module('chart-share').controller('AddPersonCtrl', ['$scope', '$http', '$
       insurancePolicy: person.insurancePolicy,
       allergy : person.allergy,
       surgery: person.surgery,
-      hospital: person.hospital
+      hospital: person.hospital,
+      groupId: $rootScope.group.id
     }).then(function (resp) {
       console.log("response from post", resp.data);
-      $state.go('person',{'personId':$scope.params.personId});
+      $state.go('person',{'personId':resp.data.id});
     });
   }
 
