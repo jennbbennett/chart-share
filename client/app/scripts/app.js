@@ -141,7 +141,7 @@ angular
       .state('addperson', {
         url: '/addperson/:personId',
         parent: 'dashboard',
-        templateUrl: 'views/pages/dashboard/addperson.html?v=' + window.app_version,
+        templateUrl: 'views/pages/dashboard/addPerson.html?v=' + window.app_version,
         controller:'AddPersonCtrl'
       })
       .state('elements', {
