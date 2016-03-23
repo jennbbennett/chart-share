@@ -7,11 +7,10 @@
  * # HomeCtrl
  * Controller of AniTheme
  */
-angular.module('chart-share').controller('HomeCtrl', ['$scope', '$http', '$timeout','authService', "$rootScope", '$state', function ($scope, $http, $timeout, authService, $rootScope, $state) {
+angular.module('chart-share').controller('HomeCtrl', ['$scope', '$http', '$timeout', 'authService', "$rootScope", '$state', function ($scope, $http, $timeout, authService, $rootScope, $state) {
   console.log("I'm in the home controller");
 
   $scope.view = {};
-
 
 
   if ($rootScope.person == undefined) {
@@ -28,15 +27,19 @@ angular.module('chart-share').controller('HomeCtrl', ['$scope', '$http', '$timeo
       $scope.physicians = response.data;
     })
 
-    $http.get('/service/medication?personId=' + $rootScope.person.id).then(function (response){
+    $http.get('/service/medication?personId=' + $rootScope.person.id).then(function (response) {
       console.log("medication response", response.data);
       $scope.medications = response.data;
     })
 
-    $http.get('/service/note/group/' + $rootScope.group.id).then(function (response){
-      console.log("notes response", response.data);
-      $scope.notes = response.data;
-    })
+    if ($rootScope.group !== undefined) {
+      $http.get('/service/note/group/' + $rootScope.group.id).then(function (response) {
+        console.log("notes response", response.data);
+        $scope.notes = response.data;
+      })
+    } else {
+      $scope.notes = {};
+    }
 
   }
   $scope.view.addPersonShow = false;
@@ -90,7 +93,7 @@ angular.module('chart-share').controller('HomeCtrl', ['$scope', '$http', '$timeo
 
   $scope.medication = {};
   console.log('current scope of medications', $scope.medications);
-  $scope.createMedication = function (medication){
+  $scope.createMedication = function (medication) {
     console.log("I will create a medication with this information", medication);
     $http.post('/service/medication', {
       rxName: medication.rxName,
@@ -100,7 +103,7 @@ angular.module('chart-share').controller('HomeCtrl', ['$scope', '$http', '$timeo
       personId: medication.personId
     }).then(function (resp) {
       console.log("response from post", resp.data);
-      $http.get('/service/medication?personId=' + $rootScope.person.id).then(function (response){
+      $http.get('/service/medication?personId=' + $rootScope.person.id).then(function (response) {
         console.log("medication response", response.data);
         $scope.medications = response.data;
       })

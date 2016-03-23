@@ -1,5 +1,6 @@
 package com.chart.share.controller;
 
+import com.chart.share.domain.CSGroup;
 import com.chart.share.domain.User;
 import com.chart.share.domain.Person;
 import com.chart.share.repository.UserRepository;
@@ -38,7 +39,7 @@ public class UserController {
         if (user != null) {
             person = personRepository.findOne(user.getPersonId());
             if (person != null) {
-                jsUser = new jsUser(user, person);
+                jsUser = new jsUser( person,user,groupController.findGroup(person.getId()).getGroup());
             }
         }
         return jsUser;
@@ -60,8 +61,7 @@ public class UserController {
                 user = userRepository.save(user);
             }
         }
-        groupController.findGroup(person.getId());
-        jsUser result = new jsUser(user, person);
+        jsUser result = new jsUser( person,user,groupController.findGroup(person.getId()).getGroup());
         return result;
     }
 
@@ -70,11 +70,12 @@ public class UserController {
     public class jsUser {
         Person person;
         User user;
+        CSGroup group;
 
-
-        public jsUser(User user, Person person) {
-            this.user = user;
+        public jsUser(Person person, User user, CSGroup group) {
             this.person = person;
+            this.user = user;
+            this.group = group;
         }
 
         public User getUser() {
@@ -83,6 +84,10 @@ public class UserController {
 
         public Person getPerson() {
             return person;
+        }
+
+        public CSGroup getGroup() {
+            return group;
         }
     }
 

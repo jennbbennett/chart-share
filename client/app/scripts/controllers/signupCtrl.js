@@ -22,6 +22,7 @@ angular.module('chart-share')
         console.log("result from creating user", resp.data);
         $rootScope.person = resp.data.person;
         $rootScope.user = resp.data.user;
+        $rootScope.group = resp.data.group;
         $state.go('home');
       })
       console.log($scope.person.firstName);
