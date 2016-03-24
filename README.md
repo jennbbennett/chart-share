@@ -1,4 +1,4 @@
-# chart-share
+# Chart-Share
 
 Chart-Share is a web application designed as a secure electronic health record that will allow up-to-date health information to be shared in a private group. Add physician, medication or group member information, pass along important notes - and keep your group healthy!
 
