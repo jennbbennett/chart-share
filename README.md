@@ -12,9 +12,10 @@ http://chart-share.cfapps.io
 
 3. Run `mongod` in a separate shell to keep an instance of the MongoDB Daemon running
 
-4. Run `gradle build`  and then `gradle bootRun` to start the development server. 
+4. Run `gulp build` and then `gulp qwatch` to start and monitor the client server.
 
-5. Run `gulp build` and then `gulp qwatch` to start and monitor the client server.
+5. Run `gradle bootRun` to start the development server. 
+
 
 
 
