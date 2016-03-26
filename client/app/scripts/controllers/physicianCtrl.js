@@ -23,9 +23,7 @@ angular.module('chart-share').controller('PhysicianCtrl', ['$scope', '$http', '$
   $scope.physician = {};
 
   $http.get('/service/physician/' + $scope.params.physicianId).then(function (response){
-    console.log(response.data);
     $scope.physician = response.data;
-    console.log('physician scope', $scope.physician);
 
   })
 
