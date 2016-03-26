@@ -94,7 +94,7 @@ angular.module('chart-share').controller('HomeCtrl', ['$scope', '$http', '$timeo
   $scope.medication = {};
   console.log('current scope of medications', $scope.medications);
   $scope.createMedication = function (medication) {
-    console.log("I will create a medication with this information", medication);
+    //console.log("I will create a medication with this information", medication);
     $http.post('/service/medication', {
       rxName: medication.rxName,
       refills: medication.refills,
@@ -104,7 +104,7 @@ angular.module('chart-share').controller('HomeCtrl', ['$scope', '$http', '$timeo
     }).then(function (resp) {
       console.log("response from post", resp.data);
       $http.get('/service/medication?personId=' + $rootScope.person.id).then(function (response) {
-        console.log("medication response", response.data);
+        //console.log("medication response", response.data);
         $scope.medications = response.data;
       })
     });
