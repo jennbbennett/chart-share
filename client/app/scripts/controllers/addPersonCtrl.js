@@ -38,6 +38,7 @@ angular.module('chart-share').controller('AddPersonCtrl', ['$scope', '$http', '$
       insurance: person.insurance,
       insurancePolicy: person.insurancePolicy,
       allergy : person.allergy,
+      condition: person.condition,
       surgery: person.surgery,
       hospital: person.hospital,
       groupId: $rootScope.group.id
