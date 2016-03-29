@@ -20,7 +20,6 @@ angular.module('chart-share').controller('AddPersonCtrl', ['$scope', '$http', '$
   console.log("Params personId",$scope.params.personId);
   $scope.view = {};
   $scope.currentPerson = {};
-  //$scope.patients = [];
 
   $http.get('/service/person/' + $scope.params.personId).then(function (response){
     console.log("response in addperson", response.data);
