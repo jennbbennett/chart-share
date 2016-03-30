@@ -43,6 +43,10 @@ angular.module('chart-share').controller('AddMedicationCtrl', ['$scope', '$http'
   $scope.createMedication = function (medication) {
     console.log("I will update a medication with this information", medication,$scope.persons);
 
+    $http.get("https://rxnav.nlm.nih.gov/REST/rxcui/351772/allndcs.json").then(function (response){
+      console.log("response from API", response);
+    })
+
     $http.put('/service/medication', {
       id: $scope.params.medicationId,
       rxName: medication.rxName,
