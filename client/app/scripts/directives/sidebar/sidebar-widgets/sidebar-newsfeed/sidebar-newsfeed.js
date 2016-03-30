@@ -8,12 +8,6 @@ angular.module('chart-share')
       replace: true,
       controller: ['$scope', '$http', '$rootScope', function ($scope, $http, $rootScope){
         console.log("In sidebar controller");
-
-        //$stateParams;
-        //console.log($stateParams);
-        //$scope.state = $state.current;
-        //$scope.params = $stateParams;
-        console.log("Scope",$rootScope);
         $scope.view = {};
 
         $http.get('/service/findgroup?personId=' + $rootScope.person.id).then(function (response) {
